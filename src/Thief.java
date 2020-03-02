@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 
 /**
  * Title:
@@ -44,6 +44,7 @@ public class Thief extends Hero
 
     public void battleChoices(DungeonCharacter opponent)
 	{
+    	
 		super.battleChoices(opponent);
 		int choice;
 
@@ -53,7 +54,7 @@ public class Thief extends Hero
 		    System.out.println("1. Attack Opponent");
 		    System.out.println("2. Surprise Attack");
 		    System.out.print("Choose an option: ");
-		    choice = Keyboard.readInt();
+		    choice = Dungeon.sc.nextInt();
 
 		    switch (choice)
 		    {
@@ -70,6 +71,5 @@ public class Thief extends Hero
 			    System.out.println("Number of turns remaining is: " + numTurns);
 
 		} while(numTurns > 0);
-
     }
 }
