@@ -45,6 +45,8 @@
 */
 public class Dungeon
 {
+	public static final Scanner sc = new Scanner(System.in);
+	
     public static void main(String[] args)
 	{
 
@@ -68,6 +70,7 @@ this task
 ---------------------------------------------------------------------*/
 	public static Hero chooseHero()
 	{
+		
 		int choice;
 		Hero theHero;
 
@@ -75,8 +78,8 @@ this task
 					       "1. Warrior\n" +
 						   "2. Sorceress\n" +
 						   "3. Thief");
-		choice = Keyboard.readInt();
-
+		choice = sc.nextInt();
+		
 		switch(choice)
 		{
 			case 1: return new Warrior();
@@ -119,11 +122,12 @@ true if the user chooses to continue, false otherwise.
 ---------------------------------------------------------------------*/
 	public static boolean playAgain()
 	{
+		
 		char again;
 
 		System.out.println("Play again (y/n)?");
-		again = Keyboard.readChar();
-
+		again = sc.next().charAt(0);
+		
 		return (again == 'Y' || again == 'y');
 	}//end playAgain method
 
@@ -136,6 +140,7 @@ user has the option of quitting.
 ---------------------------------------------------------------------*/
 	public static void battle(Hero theHero, Monster theMonster)
 	{
+		
 		char pause = 'p';
 		System.out.println(theHero.getName() + " battles " +
 							theMonster.getName());
@@ -153,7 +158,7 @@ user has the option of quitting.
 
 			//let the player bail out if desired
 			System.out.print("\n-->q to quit, anything else to continue: ");
-			pause = Keyboard.readChar();
+			pause = sc.next().charAt(0);
 
 		}//end battle loop
 
@@ -163,7 +168,7 @@ user has the option of quitting.
 			System.out.println(theHero.getName() + " was defeated :-(");
 		else//both are alive so user quit the game
 			System.out.println("Quitters never win ;-)");
-
+		
 	}//end battle method
 
 
