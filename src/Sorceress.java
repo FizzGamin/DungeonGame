@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 
 /**
  * Title:
@@ -49,6 +49,7 @@ public class Sorceress extends Hero
 //-----------------------------------------------------------------
     public void battleChoices(DungeonCharacter opponent)
 	{
+    	
 		super.battleChoices(opponent);
 		int choice;
 
@@ -57,7 +58,7 @@ public class Sorceress extends Hero
 		    System.out.println("1. Attack Opponent");
 		    System.out.println("2. Increase Hit Points");
 		    System.out.print("Choose an option: ");
-		    choice = Keyboard.readInt();
+		    choice = Dungeon.sc.nextInt();
 
 		    switch (choice)
 		    {
@@ -74,7 +75,7 @@ public class Sorceress extends Hero
 			    System.out.println("Number of turns remaining is: " + numTurns);
 
 		} while(numTurns > 0 && hitPoints > 0 && opponent.getHitPoints() > 0);
-
+		
     }//end overridden method
-
+    
 }//end class
