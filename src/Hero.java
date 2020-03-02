@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 
 /**
  * Title: Hero.java
@@ -55,8 +55,10 @@ This method is called by: hero constructor
 ---------------------------------------------------------*/
   public void readName()
   {
+	  	
 		System.out.print("Enter character name: ");
-		name = Keyboard.readString();
+		name = Dungeon.sc.next();
+		
   }//end readName method
 
 /*-------------------------------------------------------
