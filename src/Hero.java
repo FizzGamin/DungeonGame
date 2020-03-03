@@ -47,12 +47,6 @@ public abstract class Hero extends DungeonCharacter
   
 /*-------------------------------------------------------
 readName obtains a name for the hero from the user
-
-Receives: nothing
-Returns: nothing
-
-This method calls: nothing
-This method is called by: hero constructor
 ---------------------------------------------------------*/
   public void readName()
   {
@@ -64,12 +58,6 @@ This method is called by: hero constructor
 
 /*-------------------------------------------------------
 defend determines if hero blocks attack
-
-Receives: nothing
-Returns: true if attack is blocked, false otherwise
-
-This method calls: Math.random()
-This method is called by: subtractHitPoints()
 ---------------------------------------------------------*/
   public boolean defend()
   {
@@ -82,12 +70,6 @@ subtractHitPoints checks to see if hero blocked attack, if so a message
 is displayed, otherwise base version of this method is invoked to
 perform the subtraction operation.  This method overrides the method
 inherited from DungeonCharacter promoting polymorphic behavior
-
-Receives: hit points to subtract
-Returns: nothing
-
-This method calls: defend() or base version of method
-This method is called by: attack() from base class
 ---------------------------------------------------------*/
 public void subtractHitPoints(int hitPoints)
 	{
@@ -107,12 +89,6 @@ public void subtractHitPoints(int hitPoints)
 battleChoices will be overridden in derived classes.  It computes the
 number of turns a hero will get per round based on the opponent that is
 being fought. all herops will call this for their battle choices
-
-Receives: opponent
-Returns: nothing
-
-This method calls: getAttackSpeed(), useAbility()
-This method is called by: external sources
 ---------------------------------------------------------*/
 	public void battleChoices(DungeonCharacter opponent)
 	{

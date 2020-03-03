@@ -81,15 +81,6 @@ public abstract class DungeonCharacter implements Comparable<DungeonCharacter>
 	}//end getAttackSpeed
 
 
-/*-------------------------------------------------------
-addHitPoints is used to increment the hitpoints a dungeon character has
-
-Receives: number of hit points to add
-Returns: nothing
-
-This method calls: nothing
-This method is called by: heal method of monsters and Sorceress
----------------------------------------------------------*/
 	public void addHitPoints(int hitPoints)
 	{
 		if (hitPoints <=0)
@@ -102,17 +93,7 @@ This method is called by: heal method of monsters and Sorceress
 		}
 	}//end addHitPoints method
 
-/*-------------------------------------------------------
-subtractHitPoints is used to decrement the hitpoints a dungeon character has.
-It also reports the damage and remaining hit points (these things could be
-done in separate methods to make code more modular ;-)
 
-Receives: number of hit points to subtract
-Returns: nothing
-
-This method calls: nothing
-This method is called by: overridden versions in Hero and Monster
----------------------------------------------------------*/
 	public void subtractHitPoints(int hitPoints)
 	{
 		if (hitPoints <0)
@@ -135,15 +116,7 @@ This method is called by: overridden versions in Hero and Monster
 
 	}//end method
 
-/*-------------------------------------------------------
-isAlive is used to see if a character is still alive by checking hit points
 
-Receives: nothing
-Returns: true is hero is alive, false otherwise
-
-This method calls: nothing
-This method is called by: unknown (intended for external use)
----------------------------------------------------------*/
     public boolean isAlive()
 	{
 	  return (hitPoints > 0);
@@ -153,13 +126,6 @@ This method is called by: unknown (intended for external use)
 attack allows character to attempt attack on opponent.  First, chance to hit
 is considered.  If a hit can occur, then the damage is calculated based on
 character's damage range.  This damage is then applied to the opponenet.
-
-Receives: opponent being attacked
-Returns: nothing
-
-This method calls: Math.random(), subtractHitPoints()
-This method is called by: overridden versions of the method in monster and
-hero classes and externally
 ---------------------------------------------------------*/
 	public void attack(DungeonCharacter opponent)
 	{
