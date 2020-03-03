@@ -23,8 +23,7 @@ public class Warrior extends Hero
 
     }//end constructor
 
-
-	public void crushingBlow(DungeonCharacter opponent)
+	public void useAbility(DungeonCharacter opponent)
 	{
 		if (Math.random() <= .4)
 		{
@@ -41,44 +40,16 @@ public class Warrior extends Hero
 
 	}//end crushingBlow method
 
+	public String abilityName()
+	{
+		return "Crushing Blow";
+	}
+	
 	public void attack(DungeonCharacter opponent)
 	{
 		System.out.println(name + " swings a mighty sword at " +
 							opponent.getName() + ":");
 		super.attack(opponent);
 	}//end override of attack method
-
-
-
-
-    public void battleChoices(DungeonCharacter opponent)
-	{
-		int choice;
-
-		super.battleChoices(opponent);
-
-		do
-		{
-		    System.out.println("1. Attack Opponent");
-		    System.out.println("2. Crushing Blow on Opponent");
-		    System.out.print("Choose an option: ");
-		    choice = Dungeon.sc.nextInt();
-
-		    switch (choice)
-		    {
-			    case 1: attack(opponent);
-			        break;
-			    case 2: crushingBlow(opponent);
-			        break;
-			    default:
-			        System.out.println("invalid choice!");
-		    }//end switch
-
-			numTurns--;
-			if (numTurns > 0)
-			    System.out.println("Number of turns remaining is: " + numTurns);
-
-		} while(numTurns > 0);
-    }//end battleChoices method
 
 }//end Hero class

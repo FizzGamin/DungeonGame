@@ -33,7 +33,7 @@
  * @version 1.0
  */
 
-public abstract class DungeonCharacter implements Comparable
+public abstract class DungeonCharacter implements Comparable<DungeonCharacter>
 {
 
 	protected String name;
@@ -42,9 +42,9 @@ public abstract class DungeonCharacter implements Comparable
 	protected double chanceToHit;
 	protected int damageMin, damageMax;
 
-	public int compareTo(Object o)
-	{
-		return 1;
+	public int compareTo(DungeonCharacter dc)
+	{  //compares speed between characters
+		return getAttackSpeed() - dc.getAttackSpeed();
 	}
 
 //-----------------------------------------------------------------

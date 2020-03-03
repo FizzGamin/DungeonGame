@@ -20,7 +20,7 @@ public class Thief extends Hero
 
     }//end constructor
 
-	public void surpriseAttack(DungeonCharacter opponent)
+	public void useAbility(DungeonCharacter opponent)
 	{
 		double surprise = Math.random();
 		if (surprise <= .4)
@@ -41,35 +41,9 @@ public class Thief extends Hero
 
 	}//end surpriseAttack method
 
-
-    public void battleChoices(DungeonCharacter opponent)
+	public String abilityName()
 	{
-    	
-		super.battleChoices(opponent);
-		int choice;
+		return "Surprise Attack";
+	}
 
-
-		do
-		{
-		    System.out.println("1. Attack Opponent");
-		    System.out.println("2. Surprise Attack");
-		    System.out.print("Choose an option: ");
-		    choice = Dungeon.sc.nextInt();
-
-		    switch (choice)
-		    {
-			    case 1: attack(opponent);
-			        break;
-			    case 2: surpriseAttack(opponent);
-			        break;
-			    default:
-			        System.out.println("invalid choice!");
-		    }//end switch
-
-			numTurns--;
-			if (numTurns > 0)
-			    System.out.println("Number of turns remaining is: " + numTurns);
-
-		} while(numTurns > 0);
-    }
 }

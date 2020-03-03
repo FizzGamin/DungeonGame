@@ -25,7 +25,7 @@ public class Sorceress extends Hero
     }//end constructor
 
 //-----------------------------------------------------------------
-	public void increaseHitPoints()
+	public void useAbility(DungeonCharacter opponent)
     {
 	    int hPoints;
 
@@ -37,6 +37,10 @@ public class Sorceress extends Hero
 		 System.out.println();
 
     }//end increaseHitPoints method
+	public String abilityName()
+	{
+		return "Increase Hitpoints";
+	}
 
 //-----------------------------------------------------------------
 	public void attack(DungeonCharacter opponent)
@@ -47,35 +51,6 @@ public class Sorceress extends Hero
 	}//end override of attack method
 
 //-----------------------------------------------------------------
-    public void battleChoices(DungeonCharacter opponent)
-	{
-    	
-		super.battleChoices(opponent);
-		int choice;
-
-		do
-		{
-		    System.out.println("1. Attack Opponent");
-		    System.out.println("2. Increase Hit Points");
-		    System.out.print("Choose an option: ");
-		    choice = Dungeon.sc.nextInt();
-
-		    switch (choice)
-		    {
-			    case 1: attack(opponent);
-			        break;
-			    case 2: increaseHitPoints();
-			        break;
-			    default:
-			        System.out.println("invalid choice!");
-		    }//end switch
-
-			numTurns--;
-		    if (numTurns > 0)
-			    System.out.println("Number of turns remaining is: " + numTurns);
-
-		} while(numTurns > 0 && hitPoints > 0 && opponent.getHitPoints() > 0);
-		
-    }//end overridden method
+    
     
 }//end class

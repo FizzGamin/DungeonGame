@@ -32,7 +32,8 @@ public abstract class Hero extends DungeonCharacter
 {
 	protected double chanceToBlock;
 	protected int numTurns;
-
+	protected abstract String abilityName();
+	public abstract void useAbility(DungeonCharacter opponent);
 //-----------------------------------------------------------------
 //calls base constructor and gets name of hero from user
   public Hero(String name, int hitPoints, int attackSpeed,
@@ -43,7 +44,7 @@ public abstract class Hero extends DungeonCharacter
 	this.chanceToBlock = chanceToBlock;
 	readName();
   }
-
+  
 /*-------------------------------------------------------
 readName obtains a name for the hero from the user
 
@@ -105,13 +106,12 @@ public void subtractHitPoints(int hitPoints)
 /*-------------------------------------------------------
 battleChoices will be overridden in derived classes.  It computes the
 number of turns a hero will get per round based on the opponent that is
-being fought.  The number of turns is reported to the user.  This stuff might
-go better in another method that is invoked from this one...
+being fought. all herops will call this for their battle choices
 
 Receives: opponent
 Returns: nothing
 
-This method calls: getAttackSpeed()
+This method calls: getAttackSpeed(), useAbility()
 This method is called by: external sources
 ---------------------------------------------------------*/
 	public void battleChoices(DungeonCharacter opponent)
@@ -122,7 +122,31 @@ This method is called by: external sources
 			numTurns++;
 
 		System.out.println("Number of turns this round is: " + numTurns);
+		int choice;
 
-	}//end battleChoices
+		do
+		{
+		    System.out.println("1. Attack Opponent");
+		    System.out.println("2. "+ abilityName());
+		    System.out.print("Choose an option: ");
+		    choice = Dungeon.sc.nextInt();
+
+		    switch (choice)
+		    {
+			    case 1: attack(opponent);
+			        break;
+			    case 2: useAbility(opponent);
+			        break;
+			    default:
+			        System.out.println("invalid choice!");
+		    }//end switch
+
+			numTurns--;
+		    if (numTurns > 0)
+			    System.out.println("Number of turns remaining is: " + numTurns);
+
+		} while(numTurns > 0 && hitPoints > 0 && opponent.getHitPoints() > 0);
+		
+    }//end overridden method
 
 }//end Hero class
