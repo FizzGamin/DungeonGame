@@ -1,5 +1,4 @@
 
-import java.util.Scanner;
 
 /**
  * Title:
@@ -20,7 +19,7 @@ public class Sorceress extends Hero
 //-----------------------------------------------------------------
     protected Sorceress()
 	{
-		super("Sorceress", 75, 5, .7, 25, 50, .3);
+		super("Sorceress", 75, 5, .7, new StatRange(25,50), .3);
 
 
     }//end constructor

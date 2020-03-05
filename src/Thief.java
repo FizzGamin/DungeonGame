@@ -1,6 +1,4 @@
 
-import java.util.Scanner;
-
 /**
  * Title:
  * Description:
@@ -15,7 +13,7 @@ public class Thief extends Hero
 
     protected Thief()
 	{
-		super("Thief", 75, 6, .8, 20, 40, .5);
+		super("Thief", 75, 6, .8,new StatRange(20,40), .5);
 
 
 

@@ -41,7 +41,7 @@ public abstract class DungeonCharacter implements Comparable<DungeonCharacter>
 	protected int hitPoints;
 	protected int attackSpeed;
 	protected double chanceToHit;
-	protected int damageMin, damageMax;
+	private StatRange damageRange;
 
 	public int compareTo(DungeonCharacter dc)
 	{  //compares speed between characters
@@ -52,15 +52,14 @@ public abstract class DungeonCharacter implements Comparable<DungeonCharacter>
 //explicit constructor to initialize instance variables -- it is called
 // by derived classes
 	public DungeonCharacter(String name, int hitPoints, int attackSpeed,
-				     double chanceToHit, int damageMin, int damageMax)
+				     double chanceToHit, StatRange damageRange)
 	{
 
 		this.name = name;
 		this.hitPoints = hitPoints;
 		this.attackSpeed = attackSpeed;
 		this.chanceToHit = chanceToHit;
-		this.damageMin = damageMin;
-		this.damageMax = damageMax;
+		this.damageRange = damageRange;
 
 	}//end constructor
 
@@ -137,8 +136,8 @@ character's damage range.  This damage is then applied to the opponenet.
 
 		if (canAttack)
 		{
-			damage = (int)(Math.random() * (damageMax - damageMin + 1))
-						+ damageMin ;
+			damage = (int)(Math.random() * (damageRange.max - damageRange.min + 1))
+						+ damageRange.min ;
 			opponent.subtractHitPoints(damage);
 
 
