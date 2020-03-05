@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 /**
@@ -15,7 +16,7 @@ import java.util.Scanner;
 public class Warrior extends Hero
 {
 
-    public Warrior()
+    protected Warrior()
 	{
 
 		super("Warrior", 125, 4, .8, 35, 60, .2);

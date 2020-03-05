@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 /**
@@ -17,7 +18,7 @@ public class Sorceress extends Hero
 	public final int MAX_ADD = 50;
 
 //-----------------------------------------------------------------
-    public Sorceress()
+    protected Sorceress()
 	{
 		super("Sorceress", 75, 5, .7, 25, 50, .3);
 

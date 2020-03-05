@@ -1,6 +1,5 @@
-
 public class MonsterFactory {
-	public Monster createMonster(int choice)
+	public static Monster createMonster(int choice)
 	{
 		switch(choice)
 		{
