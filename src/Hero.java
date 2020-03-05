@@ -88,7 +88,7 @@ public void subtractHitPoints(int hitPoints)
 /*-------------------------------------------------------
 battleChoices will be overridden in derived classes.  It computes the
 number of turns a hero will get per round based on the opponent that is
-being fought. all herops will call this for their battle choices
+being fought. All hero's will call this for their battle choices
 ---------------------------------------------------------*/
 	public void battleChoices(DungeonCharacter opponent)
 	{
@@ -100,8 +100,7 @@ being fought. all herops will call this for their battle choices
 		System.out.println("Number of turns this round is: " + numTurns);
 		int choice;
 
-		do
-		{
+		while(numTurns > 0 && hitPoints > 0 && opponent.getHitPoints() > 0){
 		    System.out.println("1. Attack Opponent");
 		    System.out.println("2. "+ abilityName());
 		    System.out.print("Choose an option: ");
@@ -121,7 +120,7 @@ being fought. all herops will call this for their battle choices
 		    if (numTurns > 0)
 			    System.out.println("Number of turns remaining is: " + numTurns);
 
-		} while(numTurns > 0 && hitPoints > 0 && opponent.getHitPoints() > 0);
+		};
 		
     }//end overridden method
 
