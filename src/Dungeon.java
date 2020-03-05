@@ -124,13 +124,13 @@ user has the option of quitting.
 	public static void battle(Hero theHero, Monster theMonster)
 	{
 		
-		char pause = 'p';
+		char quit = 'p';
 		System.out.println(theHero.getName() + " battles " +
 							theMonster.getName());
 		System.out.println("---------------------------------------------");
 
 		//do battle
-		while (theHero.isAlive() && theMonster.isAlive() && pause != 'q')
+		while (theHero.isAlive() && theMonster.isAlive() && quit != 'q')
 		{
 		    //hero goes first
 			theHero.battleChoices(theMonster);
@@ -141,7 +141,7 @@ user has the option of quitting.
 
 			//let the player bail out if desired
 			System.out.print("\n-->q to quit, anything else to continue: ");
-			pause = sc.next().charAt(0);
+			quit = sc.next().charAt(0);
 
 		}//end battle loop
 
