@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 
 /**
  * Title:
@@ -18,7 +18,7 @@ public class Warrior extends Hero
     public Warrior()
 	{
 
-		super("Warrior", 125, 4, .8, 35, 60, .2);
+		super("Warrior", 125, 4, .8,new StatRange(35,60), .2);
 
 
     }//end constructor

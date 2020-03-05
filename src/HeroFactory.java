@@ -1,6 +1,6 @@
 
 public class HeroFactory {
-	public HeroFactory createHero(int choice) 
+	public static Hero createHero(int choice) 
 	{
 		
 		switch(choice)

@@ -14,7 +14,7 @@ public class Skeleton extends Monster
 
     public Skeleton()
 	{
-		super("Sargath the Skeleton", 100, 3, .8, .3, 30, 50, 30, 50);
+		super("Sargath the Skeleton", 100, 3, .8, .3, new StatRange(30,50), new StatRange(30,50));
 
     }//end constructor
 
