@@ -72,27 +72,18 @@ this task
 ---------------------------------------------------------------------*/
 	public static Hero chooseHero()
 	{
-		
-		int choice;
-		Hero theHero;
-
-		System.out.println("Choose a hero:\n" +
+		int choice = 0;
+		while(choice < 1 || choice > 3)
+		{	
+			System.out.println("Choose a hero:\n" +
 					       "1. Warrior\n" +
 						   "2. Sorceress\n" +
 						   "3. Thief");
-		choice = sc.nextInt();
 		
-		switch(choice)
-		{
-			case 1: return new Warrior();
-
-			case 2: return new Sorceress();
-
-			case 3: return new Thief();
-
-			default: System.out.println("invalid choice, returning Thief");
-				     return new Thief();
-		}//end switch
+			choice = sc.nextInt();
+		}
+		
+		return HeroFactory.createHero(choice);
 	}//end chooseHero method
 
 /*-------------------------------------------------------------------
@@ -104,18 +95,8 @@ a polymorphic reference (Monster) to accomplish this task.
 		int choice;
 
 		choice = (int)(Math.random() * 3) + 1;
-
-		switch(choice)
-		{
-			case 1: return new Ogre();
-
-			case 2: return new Gremlin();
-
-			case 3: return new Skeleton();
-
-			default: System.out.println("invalid choice, returning Skeleton");
-				     return new Skeleton();
-		}//end switch
+		
+		return MonsterFactory.createMonster(choice);
 	}//end generateMonster method
 
 /*-------------------------------------------------------------------
