@@ -1,5 +1,4 @@
-
-import java.util.Scanner;
+package DungeonGame;
 
 /**
  * Title: Hero.java
@@ -53,7 +52,7 @@ readName obtains a name for the hero from the user
   {
 	  	
 		System.out.print("Enter character name: ");
-		name = Dungeon.sc.next();
+		name = DungeonCharacter.sc.next();
 		
   }//end readName method
 
@@ -72,7 +71,7 @@ is displayed, otherwise base version of this method is invoked to
 perform the subtraction operation.  This method overrides the method
 inherited from DungeonCharacter promoting polymorphic behavior
 ---------------------------------------------------------*/
-public void subtractHitPoints(int hitPoints)
+public void changeHitPoints(int hitPoints)
 	{
 		if (defend())
 		{
@@ -80,7 +79,7 @@ public void subtractHitPoints(int hitPoints)
 		}
 		else
 		{
-			super.subtractHitPoints(hitPoints);
+			super.changeHitPoints(hitPoints);
 		}
 
 
@@ -105,7 +104,7 @@ being fought. All hero's will call this for their battle choices
 		    System.out.println("1. Attack Opponent");
 		    System.out.println("2. "+ abilityName());
 		    System.out.print("Choose an option: ");
-		    choice = Dungeon.sc.nextInt();
+		    choice = DungeonCharacter.sc.nextInt();
 
 		    switch (choice)
 		    {

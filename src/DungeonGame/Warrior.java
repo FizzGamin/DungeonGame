@@ -1,3 +1,5 @@
+package DungeonGame;
+
 
 /**
  * Title:
@@ -14,7 +16,7 @@
 public class Warrior extends Hero
 {
 
-    protected Warrior()
+	protected Warrior()
 	{
 
 		super("Warrior", 125, 4, .8,new StatRange(35,60), .2);
@@ -29,7 +31,7 @@ public class Warrior extends Hero
 			int blowPoints = (int)(Math.random() * 76) + 100;
 			System.out.println(name + " lands a CRUSHING BLOW for " + blowPoints
 								+ " damage!");
-			opponent.subtractHitPoints(blowPoints);
+			opponent.changeHitPoints(-blowPoints);
 		}//end blow succeeded
 		else
 		{

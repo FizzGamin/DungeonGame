@@ -1,3 +1,5 @@
+package DungeonGame;
+
 
 /**
  * Title:
@@ -8,21 +10,24 @@
  * @version 1.0
  */
 
-public class Gremlin extends Monster
+public class Ogre extends Monster
 {
 
-    public Gremlin()
-	{ 	
-		super("Gnarltooth the Gremlin", 70, 5, .8, .4, new StatRange(15,30), new StatRange(20,40));
+	protected Ogre()
+	{
+    	
+		super("Oscar the Ogre", 200, 2, .6, .1, new StatRange(30,50), new StatRange(30,50));
+
+
     }//end constructor
-    
+
 	public void attack(DungeonCharacter opponent)
 	{
-		System.out.println(name + " jabs his kris at " +
+		System.out.println(name + " slowly swings a club toward's " +
 							opponent.getName() + ":");
 		super.attack(opponent);
 
 	}//end override of attack
 
 
-}//end class Gremlin
+}//end Monster class

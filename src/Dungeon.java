@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import DungeonGame. *;
 
 /**
  * Title: Dungeon.java
@@ -47,7 +47,7 @@ import java.util.Scanner;
 */
 public class Dungeon
 {
-	public static final Scanner sc = new Scanner(System.in);
+	
 	
     public static void main(String[] args)
 	{
@@ -80,7 +80,7 @@ this task
 						   "2. Sorceress\n" +
 						   "3. Thief");
 		
-			choice = sc.nextInt();
+			choice = DungeonCharacter.sc.nextInt();
 		}
 		
 		return HeroFactory.createHero(choice);
@@ -109,7 +109,7 @@ true if the user chooses to continue, false otherwise.
 		char again;
 
 		System.out.println("Play again (y/n)?");
-		again = sc.next().charAt(0);
+		again = DungeonCharacter.sc.next().charAt(0);
 		
 		return (again == 'Y' || again == 'y');
 	}//end playAgain method
@@ -141,7 +141,7 @@ user has the option of quitting.
 
 			//let the player bail out if desired
 			System.out.print("\n-->q to quit, anything else to continue: ");
-			quit = sc.next().charAt(0);
+			quit = DungeonCharacter.sc.next().charAt(0);
 
 		}//end battle loop
 

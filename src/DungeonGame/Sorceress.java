@@ -1,3 +1,4 @@
+package DungeonGame;
 
 
 /**
@@ -17,7 +18,7 @@ public class Sorceress extends Hero
 	public final int MAX_ADD = 50;
 
 //-----------------------------------------------------------------
-    protected Sorceress()
+	protected Sorceress()
 	{
 		super("Sorceress", 75, 5, .7, new StatRange(25,50), .3);
 
@@ -30,7 +31,7 @@ public class Sorceress extends Hero
 	    int hPoints;
 
 		hPoints = (int)(Math.random() * (MAX_ADD - MIN_ADD + 1)) + MIN_ADD;
-		addHitPoints(hPoints);
+		changeHitPoints(hPoints);
 		System.out.println(name + " added [" + hPoints + "] points.\n"
 							+ "Total hit points remaining are: "
 							+ hitPoints);

@@ -1,5 +1,6 @@
+package DungeonGame;
 
-
+import java.util.Scanner;
 
 /**
  * Title: DungeonCharacter.java
@@ -37,6 +38,7 @@
 public abstract class DungeonCharacter implements Comparable<DungeonCharacter>
 {
 
+	public static final Scanner sc = new Scanner(System.in);
 	protected String name;
 	protected int hitPoints;
 	protected int attackSpeed;
@@ -81,41 +83,20 @@ public abstract class DungeonCharacter implements Comparable<DungeonCharacter>
 	}//end getAttackSpeed
 
 
-	public void addHitPoints(int hitPoints)
-	{
-		if (hitPoints <=0)
-			System.out.println("Hitpoint amount must be positive.");
-		else
-		{
-			this.hitPoints += hitPoints;
-			//System.out.println("Remaining Hit Points: " + hitPoints);
-
-		}
-	}//end addHitPoints method
-
-
-	public void subtractHitPoints(int hitPoints)
-	{
-		if (hitPoints <0)
-			System.out.println("Hitpoint amount must be positive.");
-		else if (hitPoints >0)
-		{
-			this.hitPoints -= hitPoints;
-			if (this.hitPoints < 0)
-				this.hitPoints = 0;
+	public void changeHitPoints(int hitPoints) {
+		this.hitPoints += hitPoints;
+		if(this.hitPoints < 0)
+			this.hitPoints = 0;
+		if(hitPoints < 0) {
 			System.out.println(getName() + " hit " +
-								" for <" + hitPoints + "> points damage.");
+					" for <" + Math.abs(hitPoints) + "> points damage.");
 			System.out.println(getName() + " now has " +
-								getHitPoints() + " hit points remaining.");
+					getHitPoints() + " hit points remaining.");
 			System.out.println();
-		}//end else if
-
+		}
 		if (this.hitPoints == 0)
 			System.out.println(name + " has been killed :-(");
-
-
-	}//end method
-
+	}
 
     public boolean isAlive()
 	{
@@ -138,7 +119,7 @@ character's damage range.  This damage is then applied to the opponenet.
 		{
 			damage = (int)(Math.random() * (damageRange.max - damageRange.min + 1))
 						+ damageRange.min ;
-			opponent.subtractHitPoints(damage);
+			opponent.changeHitPoints(-damage);
 
 
 
