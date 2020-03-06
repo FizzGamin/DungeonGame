@@ -1,4 +1,6 @@
+package DungeonGame;
 
+import java.util.Scanner;
 
 /**
  * Title: DungeonCharacter.java
@@ -36,6 +38,7 @@
 public abstract class DungeonCharacter implements Comparable<DungeonCharacter>
 {
 
+	public static final Scanner sc = new Scanner(System.in);
 	protected String name;
 	protected int hitPoints;
 	protected int attackSpeed;
