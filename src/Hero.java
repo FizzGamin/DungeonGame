@@ -79,7 +79,7 @@ public void subtractHitPoints(int hitPoints)
 		}
 		else
 		{
-			super.subtractHitPoints(hitPoints);
+			super.changeHitPoints(hitPoints*-1);
 		}
 
 

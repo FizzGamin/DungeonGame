@@ -30,7 +30,7 @@ public class Warrior extends Hero
 			int blowPoints = (int)(Math.random() * 76) + 100;
 			System.out.println(name + " lands a CRUSHING BLOW for " + blowPoints
 								+ " damage!");
-			opponent.subtractHitPoints(blowPoints);
+			opponent.changeHitPoints(blowPoints*-1);
 		}//end blow succeeded
 		else
 		{
