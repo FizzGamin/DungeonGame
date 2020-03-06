@@ -17,7 +17,7 @@ public class Sorceress extends Hero
 	public final int MAX_ADD = 50;
 
 //-----------------------------------------------------------------
-    protected Sorceress()
+	protected Sorceress()
 	{
 		super("Sorceress", 75, 5, .7, new StatRange(25,50), .3);
 

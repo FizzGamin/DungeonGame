@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 /**
@@ -72,7 +71,7 @@ is displayed, otherwise base version of this method is invoked to
 perform the subtraction operation.  This method overrides the method
 inherited from DungeonCharacter promoting polymorphic behavior
 ---------------------------------------------------------*/
-public void subtractHitPoints(int hitPoints)
+public void changeHitPoints(int hitPoints)
 	{
 		if (defend())
 		{
