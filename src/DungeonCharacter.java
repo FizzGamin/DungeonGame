@@ -116,7 +116,7 @@ character's damage range.  This damage is then applied to the opponenet.
 		{
 			damage = (int)(Math.random() * (damageRange.max - damageRange.min + 1))
 						+ damageRange.min ;
-			opponent.changeHitPoints(damage*-1);
+			opponent.changeHitPoints(-damage);
 
 
 
