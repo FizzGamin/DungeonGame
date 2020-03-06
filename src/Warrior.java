@@ -1,4 +1,5 @@
 
+
 /**
  * Title:
  * Description:
@@ -14,7 +15,7 @@
 public class Warrior extends Hero
 {
 
-    protected Warrior()
+    public Warrior()
 	{
 
 		super("Warrior", 125, 4, .8,new StatRange(35,60), .2);

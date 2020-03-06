@@ -12,7 +12,7 @@
 public class Ogre extends Monster
 {
 
-    protected Ogre()
+    public Ogre()
 	{
     	
 		super("Oscar the Ogre", 200, 2, .6, .1, new StatRange(30,50), new StatRange(30,50));

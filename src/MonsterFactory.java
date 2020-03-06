@@ -1,3 +1,4 @@
+
 public class MonsterFactory {
 	public static Monster createMonster(int choice)
 	{

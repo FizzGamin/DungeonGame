@@ -1,3 +1,4 @@
+
 public class HeroFactory {
 	public static Hero createHero(int choice) 
 	{
