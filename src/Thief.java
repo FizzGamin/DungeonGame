@@ -12,7 +12,7 @@
 public class Thief extends Hero
 {
 
-    public Thief()
+	protected Thief()
 	{
 		super("Thief", 75, 6, .8,new StatRange(20,40), .5);
 
