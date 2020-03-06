@@ -1,3 +1,4 @@
+package DungeonGame;
 public class StatRange {
 
 	public int max;
