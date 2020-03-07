@@ -30,8 +30,8 @@ public class Room {
 		room.setWest(westDoor);
 		room.west.open();
 		
-		RoomObject roomObject = new Pillar();
-		 room.setRoomObject(roomObject);
+		RoomObject roomObject = MonsterFactory.createMonster(1);
+		room.setRoomObject(roomObject);
 		
 		System.out.print(room);
 	}
@@ -86,13 +86,13 @@ public class Room {
 			return "W";//W for Win
 		else if(this.entrance == true)
 			return "I";
-		else if(this.roomObject.getClass().getSimpleName().equals("Vision Potion"))
+		else if(this.roomObject.getClass().getSimpleName().equals("VisionPotion"))
 			return "V";
 		else if(this.exit == true)
 			return "O";
 		else if(this.roomObject.getClass().getSimpleName().equals("Pit"))
 			return "P";
-		else if(this.roomObject.getClass().getSimpleName().equals("Healing Potion"))
+		else if(this.roomObject.getClass().getSimpleName().equals("HealingPotion"))
 			return "H";
 		else
 			return "M";
