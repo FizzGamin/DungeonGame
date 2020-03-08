@@ -31,4 +31,18 @@ public class Maze {
 			this.playerPositionRow++;
 	}
 	
+	public void moveEast() {
+		if(this.playerPositionCol == 0 || this.rooms[playerPositionRow][playerPositionCol].getEast().isClosed())
+			System.out.println("Border reached or Door Locked");
+		else
+			this.playerPositionCol--;
+	}
+	
+	public void moveWest() {
+		if(this.playerPositionRow == 4 || this.rooms[playerPositionRow][playerPositionCol].getWest().isClosed())
+			System.out.println("Border reached or Door Locked");
+		else
+			this.playerPositionCol++;
+	}
+	
 }
