@@ -1,6 +1,6 @@
 package DungeonGame;
 
-import Maze.RoomObject;
+import RoomObjects.RoomObject;
 
 /**
  * Title:

@@ -1,4 +1,4 @@
-package Maze;
+package RoomObjects;
 
 public interface RoomObject {
 

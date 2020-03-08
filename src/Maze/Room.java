@@ -1,39 +1,33 @@
 package Maze;
 
-import DungeonGame.*;
+import RoomObjects.RoomObject;
 
 public class Room {
 	private Door north, south, east, west;
 	private boolean exit, entrance = false;
 	private RoomObject roomObject;
 	
-	public static void main(String[] args) {
-		Room room = new Room();
+	public void initializeRoom() {
 		
 		//North
 		Door northDoor = new Door();
-		room.setNorth(northDoor);
-		room.north.close();
+		this.setNorth(northDoor);
+		this.north.close();
 		
 		//South
 		Door southDoor = new Door();
-		room.setSouth(southDoor);
-		room.south.open();
+		this.setSouth(southDoor);
+		this.south.open();
 		
 		//East
 		Door eastDoor = new Door();
-		room.setEast(eastDoor);
-		room.east.close();
+		this.setEast(eastDoor);
+		this.east.close();
 		
 		//West
 		Door westDoor = new Door();
-		room.setWest(westDoor);
-		room.west.open();
-		
-		RoomObject roomObject = MonsterFactory.createMonster(1);
-		room.setRoomObject(roomObject);
-		
-		System.out.print(room);
+		this.setWest(westDoor);
+		this.west.open();
 	}
 	
 	
