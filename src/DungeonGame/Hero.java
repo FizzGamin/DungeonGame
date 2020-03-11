@@ -15,6 +15,10 @@ public abstract class Hero extends DungeonCharacter
 		return gameHero;
 	}
 	
+	public static void setGameHero(Hero newHero) {
+		gameHero = newHero;
+	}
+	
 	public abstract void useAbility(DungeonCharacter opponent);
 //-----------------------------------------------------------------
 //calls base constructor and gets name of hero from user
