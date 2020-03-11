@@ -1,5 +1,6 @@
 package DungeonGame;
 
+import RoomObjects.RoomObject;
 
 /**
  * Title:
@@ -11,7 +12,7 @@ package DungeonGame;
  */
 
 
-public abstract class Monster extends DungeonCharacter
+public abstract class Monster extends DungeonCharacter implements RoomObject
 {
 	protected double chanceToHeal;
 	protected StatRange healRange;

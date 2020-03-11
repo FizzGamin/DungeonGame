@@ -32,6 +32,9 @@ public abstract class Hero extends DungeonCharacter
 {
 	protected double chanceToBlock;
 	protected int numTurns;
+	protected int numHealingPotions = 0;
+	protected int numVisionPotions = 0;
+	protected int numPillarsFound = 0;
 	protected abstract String abilityName();
 	public abstract void useAbility(DungeonCharacter opponent);
 //-----------------------------------------------------------------
@@ -123,5 +126,25 @@ being fought. All hero's will call this for their battle choices
 		};
 		
     }//end overridden method
+	
+	public int getNumHealingPotions() {
+		return numHealingPotions;
+	}
+	public void setNumHealingPotions(int numHealingPotions) {
+		this.numHealingPotions = numHealingPotions;
+	}
+	public int getNumVisionPotions() {
+		return numVisionPotions;
+	}
+	public void setNumVisionPotions(int numVisionPotions) {
+		this.numVisionPotions = numVisionPotions;
+	}
+	public int getNumPillarsFound() {
+		return numPillarsFound;
+	}
+	public void setNumPillarsFound(int numPillarsFound) {
+		this.numPillarsFound = numPillarsFound;
+	}
+	
 
 }//end Hero class
