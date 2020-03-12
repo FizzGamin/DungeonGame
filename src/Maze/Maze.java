@@ -9,7 +9,7 @@ public class Maze {
 	public Maze() {
 		this.playerPositionRow = 0;
 		this.playerPositionCol = 0;
-		//when creating maze, we will get refernece to the current hero
+		//when creating maze, we will get reference to the current hero
 		gameHero = Hero.getGameHero();
 	}
 	

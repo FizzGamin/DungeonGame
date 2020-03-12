@@ -8,26 +8,21 @@ public class Room {
 	private RoomObject roomObject;
 		
 public void initializeRoom() {
-		
 		//North
 		Door northDoor = new Door();
 		this.setNorth(northDoor);
-		this.north.close();
 		
 		//South
 		Door southDoor = new Door();
 		this.setSouth(southDoor);
-		this.south.open();
 		
 		//East
 		Door eastDoor = new Door();
 		this.setEast(eastDoor);
-		this.east.close();
 		
 		//West
 		Door westDoor = new Door();
 		this.setWest(westDoor);
-		this.west.open();
 	}
 	
 	public Door getNorth() {
