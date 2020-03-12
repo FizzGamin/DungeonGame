@@ -1,4 +1,4 @@
-import DungeonGame. *;
+import DungeonGame.*;
 
 /**
  * Title: Dungeon.java
@@ -58,6 +58,8 @@ public class Dungeon
 		do
 		{
 		    theHero = chooseHero();
+		    //when creating hero make it the singleton
+		    Hero.setGameHero(theHero);
 		    theMonster = generateMonster();
 			battle(theHero, theMonster);
 
