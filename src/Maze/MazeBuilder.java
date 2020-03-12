@@ -20,7 +20,6 @@ public class MazeBuilder {
 
 		int column = 0;
 		
-		//Print East,Middle, And west doors
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 5; j++) {
 				if(i%2 == 0) {//Print Top
@@ -37,15 +36,18 @@ public class MazeBuilder {
 				}else {//Print Middle
 					if(j == 0)
 						System.out.print("*");
-					else if(j==4){
-						System.out.print("*");
-					}
 					else{
+						
 						System.out.print(rooms[column][j]);
+						
 						if(rooms[column][j].getEast().isClosed())
 							System.out.print("*");
 						else
 							System.out.print("|");
+						if(j==4) {
+							System.out.print(rooms[column][j]);
+							System.out.print("*");
+						}
 					}
 				}
 			}
@@ -86,13 +88,12 @@ public class MazeBuilder {
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
 				int num = ran.nextInt(4) + 1;
-				RoomObject object = RoomObjectFactory.createRoomObject(1);
-				roomSetup[i][j].setRoomObject(object);
+				roomSetup[i][j].setRoomObject(RoomObjectFactory.createRoomObject(num));
 			}
 		}
 	}
 
-	//Needs Work
+	
 	private static void initiliazeDoors(Room[][] roomSetup) {
 		lockRandomDoors(roomSetup);
 		lockAllBorderDoors(roomSetup);
