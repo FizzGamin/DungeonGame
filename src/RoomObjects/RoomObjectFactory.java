@@ -14,12 +14,10 @@ public class RoomObjectFactory {
 					return MonsterFactory.createMonster(num);
 
 			case 2: return new Pit();
-
-			case 3: return new Pillar();
 			
-			case 4: return new VisionPotion();
+			case 3: return new VisionPotion();
 			
-			case 5: return new HealingPotion();
+			case 4: return new HealingPotion();
 		}//end switch
 		return null;
 	}
