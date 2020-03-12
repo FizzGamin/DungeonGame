@@ -78,6 +78,7 @@ public class MazeBuilder {
 		initiliazeDoors(roomSetup);
 		setRandomRoomObjects(roomSetup);
 		setExitAndEntrance(roomSetup);
+		setupPillars(roomSetup);
 		maze.setRooms(roomSetup);
 	}
 	
@@ -102,6 +103,22 @@ public class MazeBuilder {
 		}else {
 			roomSetup[exitRow][exitColumn].setDiscovered(true);
 			roomSetup[exitRow][exitColumn].setExit(true);
+		}
+		
+	}
+	
+	private static void setupPillars(Room[][] roomSetup) {
+		Random ran = new Random();
+		
+		for(int i = 0; i < 4; i++) {
+			int row = ran.nextInt(5);
+			int col = ran.nextInt(5);
+			while(roomSetup[row][col].hasPillar() || roomSetup[row][col].isEntrance() || roomSetup[row][col].isExit()) {
+				row = ran.nextInt(5);
+				col = ran.nextInt(5);
+			}
+			roomSetup[row][col].setPillar(true);
+			roomSetup[row][col].setDiscovered(true);
 		}
 		
 	}
