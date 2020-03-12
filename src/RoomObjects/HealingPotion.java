@@ -9,7 +9,7 @@ public class HealingPotion implements RoomObject {
 	
 	
 	HealingPotion(){
-		hero.setNumHealingPotions(hero.getNumHealingPotions() + 1);
+		//hero.setNumHealingPotions(hero.getNumHealingPotions() + 1);
 	}
 	
 	public void usePotion(){
