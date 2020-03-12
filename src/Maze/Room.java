@@ -6,8 +6,8 @@ public class Room {
 	private Door north, south, east, west;
 	private boolean exit, entrance, isDiscovered = false;
 	private RoomObject roomObject;
-	
-	public void initializeRoom() {
+		
+public void initializeRoom() {
 		
 		//North
 		Door northDoor = new Door();
@@ -29,7 +29,6 @@ public class Room {
 		this.setWest(westDoor);
 		this.west.open();
 	}
-	
 	
 	public Door getNorth() {
 		return this.north;
@@ -101,9 +100,9 @@ public class Room {
 	}
 
 
-	public String centerObject() {
+	public String toString() {
 		if(!this.isDiscovered)
-			return "	";
+			return " ";
 		else {
 			if(this.roomObject == null) 
 				return "E";
@@ -124,38 +123,5 @@ public class Room {
 			else
 				return "M";
 		}
-	}
-	
-	public String toString() {
-		String roomToString;
-		
-		//North
-		if(north.isClosed())
-			roomToString = "***\n";
-		else
-			roomToString = "*-*\n";
-		
-		//East
-		if(east.isClosed())
-			roomToString += "*";
-		else
-			roomToString +="|";
-		
-		//Middle
-		roomToString += centerObject();
-		
-		//West
-		if(west.isClosed())
-			roomToString += "*\n";
-		else
-			roomToString +="|\n";
-		
-		//South
-		if(south.isClosed())
-			roomToString += "***\n";
-		else
-			roomToString += "*-*\n";
-		
-		return roomToString;
 	}
 }
