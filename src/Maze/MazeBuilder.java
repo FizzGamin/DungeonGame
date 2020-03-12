@@ -2,6 +2,9 @@ package Maze;
 
 import java.util.Random;
 
+import RoomObjects.RoomObject;
+import RoomObjects.RoomObjectFactory;
+
 public class MazeBuilder {
 	
 	
@@ -14,27 +17,44 @@ public class MazeBuilder {
 	public static void print(Maze maze) {
 		Room[][] rooms = maze.getRooms();
 		
-		System.out.println("*********");
+
+		int column = 0;
 		
-		for(int i = 0; i < 5; i++) {
+		//Print East,Middle, And west doors
+		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 5; j++) {
-				if(j < 4) {
-					if(rooms[i][j].getEast().isClosed())
+				if(i%2 == 0) {//Print Top
+					System.out.print("*");
+					
+					if(rooms[column][j].getNorth().isClosed())
 						System.out.print("*");
 					else
-						System.out.print("|");	
-					System.out.print(rooms[i][j]);//Print room object
-				}else {
-					if(rooms[i][j].getWest().isClosed())
+						System.out.print("-");
+					
+					if(j == 4)
 						System.out.print("*");
-					else
-						System.out.print("|");
+					
+				}else {//Print Middle
+					if(j == 0)
+						System.out.print("*");
+					else if(j==4){
+						System.out.print("*");
+					}
+					else{
+						System.out.print(rooms[column][j]);
+						if(rooms[column][j].getEast().isClosed())
+							System.out.print("*");
+						else
+							System.out.print("|");
+					}
 				}
 			}
+			if(i%2 == 1)
+				column++;
 			System.out.println();
 		}
 		
-		System.out.println("*********");
+		System.out.println("***********");
 		
 	}
 	
@@ -54,21 +74,36 @@ public class MazeBuilder {
 			}
 		}
 		initiliazeDoors(roomSetup);
+		setRandomRoomObjects(roomSetup);
 		maze.setRooms(roomSetup);
 	}
 	
 	
 
-	//Needs Work
-	private static void initiliazeDoors(Room[][] roomSetup) {
-		lockRandomDoors(roomSetup);
+	private static void setRandomRoomObjects(Room[][] roomSetup) {
+		Random ran = new Random();
 		
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
-				
+				int num = ran.nextInt(4) + 1;
+				RoomObject object = RoomObjectFactory.createRoomObject(1);
+				roomSetup[i][j].setRoomObject(object);
 			}
 		}
+	}
+
+	//Needs Work
+	private static void initiliazeDoors(Room[][] roomSetup) {
+		lockRandomDoors(roomSetup);
 		lockAllBorderDoors(roomSetup);
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				if(roomSetup[i][j].getSouth().isClosed() && i < 4)
+					roomSetup[i+1][j].getNorth().close();
+				if(roomSetup[i][j].getEast().isClosed() && j < 4)
+					roomSetup[i][j+1].getWest().close();
+			}
+		}
 	}
 	
 	private static void lockRandomDoors(Room[][] roomSetup) {
