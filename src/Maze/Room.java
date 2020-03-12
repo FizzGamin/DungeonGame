@@ -97,20 +97,20 @@ public void initializeRoom() {
 
 	public String toString() {
 		if(!this.isDiscovered)
-			return " ";
+			return "?";
 		else {
 			if(this.roomObject == null) 
 				return "E";
+			else if(this.entrance == true)
+				return "I";
+			else if(this.exit == true)
+				return "O";
 			else if(this.roomObject.getClass().getSuperclass().getSimpleName().equals("Monster")) 
 				return "X";
 			else if(this.roomObject.getClass().getSimpleName().equals("Pillar")) 
 				return "W";//W for Win
-			else if(this.entrance == true)
-				return "I";
 			else if(this.roomObject.getClass().getSimpleName().equals("VisionPotion"))
 				return "V";
-			else if(this.exit == true)
-				return "O";
 			else if(this.roomObject.getClass().getSimpleName().equals("Pit"))
 				return "P";
 			else if(this.roomObject.getClass().getSimpleName().equals("HealingPotion"))

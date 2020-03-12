@@ -2,7 +2,6 @@ package Maze;
 
 import java.util.Random;
 
-import RoomObjects.RoomObject;
 import RoomObjects.RoomObjectFactory;
 
 public class MazeBuilder {
@@ -20,7 +19,6 @@ public class MazeBuilder {
 
 		int column = 0;
 		
-		//Print East,Middle, And west doors
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 5; j++) {
 				if(i%2 == 0) {//Print Top
@@ -35,17 +33,21 @@ public class MazeBuilder {
 						System.out.print("*");
 					
 				}else {//Print Middle
-					if(j == 0)
+					if(j == 0) {
 						System.out.print("*");
-					else if(j==4){
-						System.out.print("*");
-					}
-					else{
 						System.out.print(rooms[column][j]);
+					}
+					
+					else{
+						
 						if(rooms[column][j].getEast().isClosed())
 							System.out.print("*");
 						else
 							System.out.print("|");
+						System.out.print(rooms[column][j]);
+						if(j==4) {
+							System.out.print("*");
+						}
 					}
 				}
 			}
@@ -75,9 +77,34 @@ public class MazeBuilder {
 		}
 		initiliazeDoors(roomSetup);
 		setRandomRoomObjects(roomSetup);
+		setExitAndEntrance(roomSetup);
 		maze.setRooms(roomSetup);
 	}
 	
+	
+	private static void setExitAndEntrance(Room[][] roomSetup) {
+		Random ran = new Random();
+		
+		//Setup Entrance
+		int entranceColumn = ran.nextInt(5);
+		int entranceRow = ran.nextInt(5);
+		roomSetup[entranceRow][entranceColumn].setDiscovered(true);
+		roomSetup[entranceRow][entranceColumn].setEntrance(true);
+
+		//Setup Exit
+		int exitColumn = ran.nextInt(5);
+		int exitRow = ran.nextInt(5);
+		if(roomSetup[exitRow][exitColumn].isEntrance()) {
+			exitColumn = ran.nextInt(5);
+			exitRow = ran.nextInt(5);
+			roomSetup[exitRow][exitColumn].setDiscovered(true);
+			roomSetup[exitRow][exitColumn].setExit(true);
+		}else {
+			roomSetup[exitRow][exitColumn].setDiscovered(true);
+			roomSetup[exitRow][exitColumn].setExit(true);
+		}
+		
+	}
 	
 
 	private static void setRandomRoomObjects(Room[][] roomSetup) {
@@ -86,13 +113,12 @@ public class MazeBuilder {
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
 				int num = ran.nextInt(4) + 1;
-				RoomObject object = RoomObjectFactory.createRoomObject(1);
-				roomSetup[i][j].setRoomObject(object);
+				roomSetup[i][j].setRoomObject(RoomObjectFactory.createRoomObject(num));
 			}
 		}
 	}
 
-	//Needs Work
+	
 	private static void initiliazeDoors(Room[][] roomSetup) {
 		lockRandomDoors(roomSetup);
 		lockAllBorderDoors(roomSetup);
