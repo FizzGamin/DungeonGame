@@ -9,11 +9,11 @@ public class MazeBuilder {
 	
 	public static void main(String[] args) {
 		Maze maze = buildMaze();
-		print(maze);
+		printEntireMaze(maze);
 		
 	}
 	
-	public static void print(Maze maze) {
+	public static void printEntireMaze(Maze maze) {
 		Room[][] rooms = maze.getRooms();
 		
 
@@ -35,7 +35,7 @@ public class MazeBuilder {
 				}else {//Print Middle
 					if(j == 0) {
 						System.out.print("*");
-						System.out.print(rooms[column][j]);
+						System.out.print(rooms[column][j].centerObject());
 					}
 					
 					else{
@@ -44,7 +44,7 @@ public class MazeBuilder {
 							System.out.print("*");
 						else
 							System.out.print("|");
-						System.out.print(rooms[column][j]);
+						System.out.print(rooms[column][j].centerObject());
 						if(j==4) {
 							System.out.print("*");
 						}
@@ -118,7 +118,6 @@ public class MazeBuilder {
 				col = ran.nextInt(5);
 			}
 			roomSetup[row][col].setPillar(true);
-			roomSetup[row][col].setDiscovered(true);
 		}
 		
 	}

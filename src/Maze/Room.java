@@ -102,7 +102,7 @@ public void initializeRoom() {
 		this.hasPillar = hasPillar;
 	}
 
-	public String toString() {
+	public String centerObject() {
 		if(!this.isDiscovered)
 			return "?";
 		else {
@@ -125,5 +125,38 @@ public void initializeRoom() {
 			else
 				return "M";
 		}
+	}
+
+	public String toString() {
+		String roomToString;
+
+		//North
+		if(north.isClosed())
+			roomToString = "***\n";
+		else
+			roomToString = "*-*\n";
+
+		//East
+		if(east.isClosed())
+			roomToString += "*";
+		else
+			roomToString +="|";
+
+		//Middle
+		roomToString += centerObject();
+
+		//West
+		if(west.isClosed())
+			roomToString += "*\n";
+		else
+			roomToString +="|\n";
+
+		//South
+		if(south.isClosed())
+			roomToString += "***\n";
+		else
+			roomToString += "*-*\n";
+
+		return roomToString;
 	}
 }
