@@ -76,9 +76,9 @@ public class MazeBuilder {
 			}
 		}
 		initiliazeDoors(roomSetup);
-		setRandomRoomObjects(roomSetup);
 		setExitAndEntrance(roomSetup);
 		setupPillars(roomSetup);
+		setRandomRoomObjects(roomSetup);
 		maze.setRooms(roomSetup);
 	}
 	
@@ -151,7 +151,7 @@ public class MazeBuilder {
 	private static void lockRandomDoors(Room[][] roomSetup) {
 		Random ran = new Random();
 		
-		for(int i = 0; i < 10; i++) {
+		for(int i = 0; i < 15; i++) {
 			int randomColumn = ran.nextInt(5);
 			int randomRow = ran.nextInt(5);
 			
