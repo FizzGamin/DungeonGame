@@ -9,20 +9,16 @@ public class Room {
 		
 public void initializeRoom() {
 		//North
-		Door northDoor = new Door();
-		this.setNorth(northDoor);
+		this.setNorth(new Door());
 		
 		//South
-		Door southDoor = new Door();
-		this.setSouth(southDoor);
+		this.setSouth(new Door());
 		
 		//East
-		Door eastDoor = new Door();
-		this.setEast(eastDoor);
+		this.setEast(new Door());
 		
 		//West
-		Door westDoor = new Door();
-		this.setWest(westDoor);
+		this.setWest(new Door());
 	}
 	
 	public Door getNorth() {
@@ -131,28 +127,28 @@ public void initializeRoom() {
 		String roomToString;
 
 		//North
-		if(north.isClosed())
+		if(this.north.isClosed())
 			roomToString = "***\n";
 		else
 			roomToString = "*-*\n";
 
-		//East
-		if(east.isClosed())
+		//West
+		if(this.west.isClosed())
 			roomToString += "*";
 		else
 			roomToString +="|";
-
+		
 		//Middle
 		roomToString += centerObject();
 
-		//West
-		if(west.isClosed())
+		//East
+		if(this.east.isClosed())
 			roomToString += "*\n";
 		else
 			roomToString +="|\n";
 
 		//South
-		if(south.isClosed())
+		if(this.south.isClosed())
 			roomToString += "***\n";
 		else
 			roomToString += "*-*\n";
