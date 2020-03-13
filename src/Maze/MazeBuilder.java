@@ -19,6 +19,7 @@ public class MazeBuilder {
 	public static void printRow(int row,int columnToStartAt, int columnToEndAt, Room[][] rooms) {
 		for(int i = 0; i < 2; i++) {
 			for(int j = columnToStartAt; j < columnToEndAt+1; j++) {
+				rooms[row][j].setDiscovered(true);
 				//Print Top
 				if(i == 0) {
 					System.out.print("*");
