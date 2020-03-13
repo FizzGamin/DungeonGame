@@ -23,7 +23,7 @@ public class VisionPotion implements RoomObject {
 		}
 		//If on bottom row
 		else if(row == 4 && col > 0 && col < 4) {
-			for(int i = row-1; i < row; i++) {
+			for(int i = row-1; i < row+1; i++) {
 				MazeBuilder.printRow(i, col-1, col+1, maze.getRooms());
 			}
 		}
@@ -53,13 +53,13 @@ public class VisionPotion implements RoomObject {
 		}
 		//if in bottom left corner
 		else if(row == 4 && col == 0){
-			for(int i = row-1; i < row; i++) {
+			for(int i = row-1; i < row+1; i++) {
 				MazeBuilder.printRow(i, col, col+1, maze.getRooms());
 			}
 		}
 		//If in bottom right corner
 		else if(row == 4 && col == 4){
-			for(int i = row-1; i < row; i++) {
+			for(int i = row-1; i < row+1; i++) {
 				MazeBuilder.printRow(i, col-1, col, maze.getRooms());
 			}
 		}

@@ -9,9 +9,6 @@ public class MazeBuilder {
 	
 	public static void printEntireMaze(Maze maze) {
 		Room[][] rooms = maze.getRooms();
-		
-
-		
 		for(int i = 0; i < 5; i++) {
 			printRow(i,0,4,rooms);
 		}
@@ -21,7 +18,8 @@ public class MazeBuilder {
 	public static void printRow(int row,int columnToStartAt, int columnToEndAt, Room[][] rooms) {
 		for(int i = 0; i < 2; i++) {
 			for(int j = columnToStartAt; j < columnToEndAt+1; j++) {
-				if(i == 0) {//Print Top
+				//Print Top
+				if(i == 0) {
 					System.out.print("*");
 					
 					if(rooms[row][j].getNorth().isClosed())
@@ -29,14 +27,11 @@ public class MazeBuilder {
 					else
 						System.out.print("-");
 					
-					if(j==columnToEndAt) {
-						if(rooms[row][j].getEast().isClosed())
-							System.out.print("*");
-						else
-							System.out.print("|");
-					};
-					
-				}else {//Print Middle
+					if(j==columnToEndAt) 
+						System.out.print("*");
+				}
+				//Print Middle
+				else {
 					if(rooms[row][j].getWest().isClosed())
 						System.out.print("*");
 					else
