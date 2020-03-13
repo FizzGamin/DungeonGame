@@ -9,7 +9,8 @@ public class VisionPotion implements RoomObject {
 		Maze maze = MazeBuilder.getMaze();
 		int row = maze.getPlayerPositionRow();
 		int col = maze.getPlayerPositionCol();
-		if(row > 0 && col > 0) {
+		//If no where near a wall
+		if(row > 0 && col > 0 && row < 4 && col < 4) {
 			for(int i = row-1; i < row+1; i++) {
 				MazeBuilder.printRow(i, col-1, col+1, maze.getRooms());
 			}
