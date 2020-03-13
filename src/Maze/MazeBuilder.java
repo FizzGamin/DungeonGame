@@ -147,6 +147,13 @@ public class MazeBuilder {
 				//Check east close west
 				if(roomSetup[i][j].getEast().isClosed() && j < 4)
 					roomSetup[i][j+1].getWest().close();
+				//Check north close south
+				if(roomSetup[i][j].getNorth().isClosed() && i > 0)
+					roomSetup[i-1][j].getSouth().close();
+				//Check west close east
+				if(roomSetup[i][j].getWest().isClosed() && j > 0)
+					roomSetup[i][j-1].getEast().close();
+				
 			}
 		}
 	}
