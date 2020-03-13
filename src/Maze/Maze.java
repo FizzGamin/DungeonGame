@@ -40,29 +40,37 @@ public class Maze {
 	public void moveNorth() {
 		if(this.rooms[playerPositionRow][playerPositionCol].getNorth().isClosed())
 			System.out.println("Door Locked");
-		else
+		else {
+			this.rooms[playerPositionRow - 1][playerPositionCol].setDiscovered(true);
 			this.playerPositionRow--;
+		}
 	}
 	
 	public void moveSouth() {
 		if(this.rooms[playerPositionRow][playerPositionCol].getSouth().isClosed())
 			System.out.println("Door Locked");
-		else
+		else {
+			this.rooms[playerPositionRow + 1][playerPositionCol].setDiscovered(true);
 			this.playerPositionRow++;
+		}
 	}
 	
 	public void moveEast() {
 		if(this.rooms[playerPositionRow][playerPositionCol].getEast().isClosed())
 			System.out.println("Door Locked");
-		else
+		else {
+			this.rooms[playerPositionRow][playerPositionCol + 1].setDiscovered(true);
 			this.playerPositionCol++;
+		}
 	}
 	
 	public void moveWest() {
 		if(this.rooms[playerPositionRow][playerPositionCol].getWest().isClosed())
 			System.out.println("Door Locked");
-		else
+		else {
+			this.rooms[playerPositionRow][playerPositionCol - 1].setDiscovered(true);
 			this.playerPositionCol--;
+		}
 	}
 	
 }
