@@ -1,4 +1,7 @@
+import java.util.Scanner;
+
 import DungeonGame.*;
+import Maze.*;
 
 /**
  * Title: Dungeon.java
@@ -51,20 +54,29 @@ public class Dungeon
 	
     public static void main(String[] args)
 	{
-
-		Hero theHero;
-		Monster theMonster;
-
-		do
-		{
-		    theHero = chooseHero();
-		    //when creating hero make it the singleton
-		    Hero.setGameHero(theHero);
-		    theMonster = generateMonster();
-			battle(theHero, theMonster);
-
-		} while (playAgain());
-
+    	Maze maze = MazeBuilder.buildMaze();
+    	System.out.println(maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()]);
+    	System.out.println("wasd to move");
+    	Scanner sc = new Scanner(System.in);
+    	int i = 0;
+    	while(i < 100) {
+    	
+    	String move = sc.next();
+    	
+    	if(move.toLowerCase().equals("w"))
+    		maze.moveNorth();
+    	else if(move.toLowerCase().equals("a"))
+    		maze.moveWest();
+    	else if(move.toLowerCase().equals("s"))
+    		maze.moveSouth();
+    	else if(move.toLowerCase().equals("d"))
+    		maze.moveEast();
+    	else if(move.toLowerCase().equals("p"))
+    		MazeBuilder.printEntireMaze(maze);
+    	System.out.println(maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()]);
+    	}
+    	
+    	sc.close();
     }//end main method
 
 /*-------------------------------------------------------------------
