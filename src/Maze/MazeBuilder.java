@@ -5,13 +5,13 @@ import java.util.Random;
 import RoomObjects.RoomObjectFactory;
 
 public class MazeBuilder {
+	private static Maze maze = new Maze();
 	
-	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Maze maze = buildMaze();
 		printEntireMaze(maze);
 		
-	}
+	}*/
 	
 	public static void printEntireMaze(Maze maze) {
 		Room[][] rooms = maze.getRooms();
@@ -36,14 +36,13 @@ public class MazeBuilder {
 					if(j == 0) {
 						System.out.print("*");
 						System.out.print(rooms[column][j].centerObject());
-					}
-					
-					else{
+					}else{
 						
-						if(rooms[column][j].getEast().isClosed())
+						if(rooms[column][j].getWest().isClosed())
 							System.out.print("*");
 						else
 							System.out.print("|");
+						
 						System.out.print(rooms[column][j].centerObject());
 						if(j==4) {
 							System.out.print("*");
@@ -61,7 +60,6 @@ public class MazeBuilder {
 	}
 	
 	public static Maze buildMaze() {
-		Maze maze = new Maze();
 		initiliazeRooms(maze);
 		return maze;
 	}
@@ -89,8 +87,11 @@ public class MazeBuilder {
 		//Setup Entrance
 		int entranceColumn = ran.nextInt(5);
 		int entranceRow = ran.nextInt(5);
+		
 		roomSetup[entranceRow][entranceColumn].setDiscovered(true);
 		roomSetup[entranceRow][entranceColumn].setEntrance(true);
+		maze.setPlayerPositionRow(entranceRow);
+		maze.setPlayerPositionCol(entranceColumn);
 
 		//Setup Exit
 		int exitColumn = ran.nextInt(5);
@@ -140,8 +141,10 @@ public class MazeBuilder {
 		lockAllBorderDoors(roomSetup);
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
+				//Check south close north
 				if(roomSetup[i][j].getSouth().isClosed() && i < 4)
 					roomSetup[i+1][j].getNorth().close();
+				//Check east close west
 				if(roomSetup[i][j].getEast().isClosed() && j < 4)
 					roomSetup[i][j+1].getWest().close();
 			}
@@ -170,8 +173,8 @@ public class MazeBuilder {
 		for(int i = 0; i < 5; i++) {
 			roomSetup[0][i].getNorth().close();//Top rooms
 			roomSetup[4][i].getSouth().close();//Bottom rooms
-			roomSetup[i][0].getEast().close();//LeftSide rooms
-			roomSetup[i][4].getWest().close();//RightSide rooms
+			roomSetup[i][0].getWest().close();//LeftSide rooms
+			roomSetup[i][4].getEast().close();//RightSide rooms
 		}
 	}
 	
