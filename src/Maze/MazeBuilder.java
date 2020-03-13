@@ -13,16 +13,14 @@ public class MazeBuilder {
 
 		
 		for(int i = 0; i < 5; i++) {
-			printRow(i,0,5,rooms);
+			printRow(i,0,4,rooms);
 		}
-		
 		System.out.println("***********");
-		
 	}
 	
 	public static void printRow(int row,int columnToStartAt, int columnToEndAt, Room[][] rooms) {
 		for(int i = 0; i < 2; i++) {
-			for(int j = columnToStartAt; j < columnToEndAt; j++) {
+			for(int j = columnToStartAt; j < columnToEndAt+1; j++) {
 				if(i == 0) {//Print Top
 					System.out.print("*");
 					
@@ -31,24 +29,25 @@ public class MazeBuilder {
 					else
 						System.out.print("-");
 					
-					if(j == 4)
-						System.out.print("*");
-					
-				}else {//Print Middle
-					if(j == 0) {
-						System.out.print("*");
-						System.out.print(rooms[row][j].centerObject());
-					}else{
-						
-						if(rooms[row][j].getWest().isClosed())
+					if(j==columnToEndAt) {
+						if(rooms[row][j].getEast().isClosed())
 							System.out.print("*");
 						else
 							System.out.print("|");
-						
-						System.out.print(rooms[row][j].centerObject());
-						if(j==4) {
+					};
+					
+				}else {//Print Middle
+					if(rooms[row][j].getWest().isClosed())
+						System.out.print("*");
+					else
+						System.out.print("|");
+					
+					System.out.print(rooms[row][j].centerObject());
+					if(j==columnToEndAt) {
+						if(rooms[row][j].getEast().isClosed())
 							System.out.print("*");
-						}
+						else
+							System.out.print("|");
 					}
 				}
 			}

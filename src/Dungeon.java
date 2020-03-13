@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 import DungeonGame.*;
 import Maze.*;
+import RoomObjects.VisionPotion;
 
 /**
  * Title: Dungeon.java
@@ -73,6 +74,8 @@ public class Dungeon
     		maze.moveEast();
     	else if(move.toLowerCase().equals("p"))
     		MazeBuilder.printEntireMaze(maze);
+    	else if(move.toLowerCase().equals("f"))
+    		VisionPotion.usePotion();
     	System.out.println(maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()]);
     	}
     	
