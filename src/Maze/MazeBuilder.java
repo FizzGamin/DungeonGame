@@ -19,7 +19,6 @@ public class MazeBuilder {
 	public static void printRow(int row,int columnToStartAt, int columnToEndAt, Room[][] rooms) {
 		for(int i = 0; i < 2; i++) {
 			for(int j = columnToStartAt; j < columnToEndAt+1; j++) {
-				rooms[row][j].setDiscovered(true);
 				//Print Top
 				if(i == 0) {
 					System.out.print("*");
@@ -97,7 +96,6 @@ public class MazeBuilder {
 		int entranceColumn = ran.nextInt(5);
 		int entranceRow = ran.nextInt(5);
 		
-		roomSetup[entranceRow][entranceColumn].setDiscovered(true);
 		roomSetup[entranceRow][entranceColumn].setEntrance(true);
 		maze.setPlayerPositionRow(entranceRow);
 		maze.setPlayerPositionCol(entranceColumn);
@@ -108,10 +106,8 @@ public class MazeBuilder {
 		if(roomSetup[exitRow][exitColumn].isEntrance()) {
 			exitColumn = ran.nextInt(5);
 			exitRow = ran.nextInt(5);
-			roomSetup[exitRow][exitColumn].setDiscovered(true);
 			roomSetup[exitRow][exitColumn].setExit(true);
 		}else {
-			roomSetup[exitRow][exitColumn].setDiscovered(true);
 			roomSetup[exitRow][exitColumn].setExit(true);
 		}
 		

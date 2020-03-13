@@ -4,7 +4,7 @@ import RoomObjects.RoomObject;
 
 public class Room {
 	private Door north, south, east, west;
-	private boolean exit, entrance, isDiscovered, hasPillar = false;
+	private boolean exit, entrance, hasPillar = false;
 	private RoomObject roomObject;
 		
 public void initializeRoom() {
@@ -80,16 +80,6 @@ public void initializeRoom() {
 		this.entrance = entrance;
 	}
 
-
-	public boolean isDiscovered() {
-		return isDiscovered;
-	}
-
-
-	public void setDiscovered(boolean isDiscovered) {
-		this.isDiscovered = isDiscovered;
-	}
-
 	public boolean hasPillar() {
 		return hasPillar;
 	}
@@ -99,28 +89,25 @@ public void initializeRoom() {
 	}
 
 	public String centerObject() {
-		if(!this.isDiscovered)
-			return "?";
-		else {
-			if(this.roomObject == null) 
-				return "E";
-			else if(this.entrance)
-				return "I";
-			else if(this.exit)
-				return "O";
-			else if(this.hasPillar) 
-				return "W";//W for Win
-			else if(this.roomObject.getClass().getSuperclass().getSimpleName().equals("Monster")) 
-				return "X";
-			else if(this.roomObject.getClass().getSimpleName().equals("VisionPotion"))
-				return "V";
-			else if(this.roomObject.getClass().getSimpleName().equals("Pit"))
-				return "P";
-			else if(this.roomObject.getClass().getSimpleName().equals("HealingPotion"))
-				return "H";
-			else
-				return "M";
-		}
+		if(this.roomObject == null) 
+			return "E";
+		else if(this.entrance)
+			return "I";
+		else if(this.exit)
+			return "O";
+		else if(this.hasPillar) 
+			return "W";//W for Win
+		else if(this.roomObject.getClass().getSuperclass().getSimpleName().equals("Monster")) 
+			return "X";
+		else if(this.roomObject.getClass().getSimpleName().equals("VisionPotion"))
+			return "V";
+		else if(this.roomObject.getClass().getSimpleName().equals("Pit"))
+			return "P";
+		else if(this.roomObject.getClass().getSimpleName().equals("HealingPotion"))
+			return "H";
+		else
+			return "M";
+		
 	}
 
 	public String toString() {
