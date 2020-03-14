@@ -134,7 +134,7 @@ public class MazeBuilder {
 		
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
-				int num = ran.nextInt(4) + 1;
+				int num = ran.nextInt(100);
 				roomSetup[i][j].setRoomObject(RoomObjectFactory.createRoomObject(num));
 			}
 		}
