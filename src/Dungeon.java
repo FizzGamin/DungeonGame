@@ -94,7 +94,7 @@ this task
 	public static Hero chooseHero()
 	{
 		int choice = 0;
-		while(choice < 1 || choice > 3)
+		while(choice < 1 || choice > 5)
 		{	
 			System.out.println("Choose a hero:\n" +
 					       "1. Warrior\n" +
