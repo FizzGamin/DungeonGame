@@ -13,8 +13,9 @@ public class HealingPotion implements RoomObject {
 		System.out.println(randomInt);
 		hero.changeHitPoints(randomInt);
 		hero.setNumHealingPotions(Hero.getGameHero().getNumHealingPotions() - 1);
+		System.out.println(randomInt + " Hit points have been added to " + hero.getName());
 	}
-	
+		
 	public void pickupPotion() {
 		hero.setNumHealingPotions(hero.getNumHealingPotions() + 1);
 	}
