@@ -58,7 +58,8 @@ public void initializeRoom() {
 	}
 	
 	public void setRoomObject(RoomObject roomObject) {
-		this.roomObject = roomObject;
+		if(this.roomObject == null)
+			this.roomObject = roomObject;
 	}
 	
 	public boolean isExit() {
@@ -107,7 +108,6 @@ public void initializeRoom() {
 			return "H";
 		else
 			return "M";
-		
 	}
 
 	public String toString() {
