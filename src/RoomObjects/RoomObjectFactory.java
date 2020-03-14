@@ -9,7 +9,7 @@ public class RoomObjectFactory {
 	{
 		if(choice < 15) {
 			Random ran = new Random();
-			int num = ran.nextInt(2)+1;
+			int num = ran.nextInt(5)+1;
 			return MonsterFactory.createMonster(num);
 		}
 		else if(choice > 15 && choice < 30)
