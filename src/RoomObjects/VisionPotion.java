@@ -1,7 +1,6 @@
 package RoomObjects;
 
-import Maze.Maze;
-import Maze.MazeBuilder;
+import Maze.*;
 
 public class VisionPotion implements RoomObject {
 	
@@ -9,7 +8,7 @@ public class VisionPotion implements RoomObject {
 		Maze maze = MazeBuilder.getMaze();
 		int row = maze.getPlayerPositionRow();
 		int col = maze.getPlayerPositionCol();
-		//If no where near a wall
+		//If not near the border
 		if(row > 0 && col > 0 && row < 4 && col < 4) {
 			for(int i = row-1; i < row+2; i++) {
 				MazeBuilder.printRow(i, col-1, col+1, maze.getRooms());
