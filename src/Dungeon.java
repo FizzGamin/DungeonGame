@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 import DungeonGame.*;
 import Maze.*;
-import RoomObjects.VisionPotion;
+import RoomObjects.*;
 
 /**
  * Title: Dungeon.java
@@ -55,6 +55,8 @@ public class Dungeon
 	
     public static void main(String[] args)
 	{
+    	Hero theHero;
+		theHero = chooseHero();
     	Maze maze = MazeBuilder.buildMaze();
     	System.out.println(maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()]);
     	System.out.println("wasd to move");
@@ -64,8 +66,9 @@ public class Dungeon
     	
     	String move = sc.next();
     	
-    	if(move.toLowerCase().equals("w"))
+    	if(move.toLowerCase().equals("w")) {
     		maze.moveNorth();
+    	}
     	else if(move.toLowerCase().equals("a"))
     		maze.moveWest();
     	else if(move.toLowerCase().equals("s"))
@@ -77,6 +80,7 @@ public class Dungeon
     	else if(move.toLowerCase().equals("f"))
     		VisionPotion.usePotion();
     	System.out.println(maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()]);
+    	checkRoomObject(maze,theHero);
     	}
     	
     	sc.close();
@@ -172,6 +176,14 @@ user has the option of quitting.
 			System.out.println("Quitters never win ;-)");
 		
 	}//end battle method
-
+	
+	private static void checkRoomObject(Maze maze,Hero theHero) {
+		String roomObject = maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()].centerObject();
+		if(roomObject.equals("X")) {
+			Monster theMonster = (Monster) maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()].getRoomObject();
+			battle(theHero, theMonster);
+		}
+			
+	}
 
 }//end Dungeon class
