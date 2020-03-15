@@ -56,14 +56,21 @@ public class Dungeon
     public static void main(String[] args)
 	{
     	Hero theHero;
-		theHero = chooseHero();
+		
+    	theHero = chooseHero();
+    	
+    	printHeroCurrentStats();
+    	
+    	VisionPotion potionForTesting = new VisionPotion();
+	
     	Maze maze = MazeBuilder.buildMaze();
+    	
     	System.out.println(getCurrentRoom(maze));
     	System.out.println("wasd to move");
-    	Scanner sc = new Scanner(System.in);
-    	int i = 0;
-    	while(i < 100) {
     	
+    	Scanner sc = new Scanner(System.in);
+    	
+    	while(theHero.getNumPillarsFound() < 4 && !getCurrentRoom(maze).isExit()) {
     	String move = sc.next();
     	
     	if(move.toLowerCase().equals("w")) {
@@ -78,10 +85,12 @@ public class Dungeon
     	else if(move.toLowerCase().equals("p"))
     		MazeBuilder.printEntireMaze(maze);
     	else if(move.toLowerCase().equals("f"))
-    		VisionPotion.usePotion();
+    		potionForTesting.usePotion();
     	System.out.println(getCurrentRoom(maze));
-    	checkRoomObject(maze,theHero);
+    	checkRoomObject(maze);
     	}
+    	
+    	System.out.println("You have Completed the maze");
     	
     	sc.close();
     }//end main method
@@ -115,10 +124,10 @@ and a Monster to be passed in.  Battle occurs in rounds.  The Hero
 goes first, then the Monster.  At the conclusion of each round, the
 user has the option of quitting.
 ---------------------------------------------------------------------*/
-	public static void battle(Hero theHero, Monster theMonster)
+	public static void battle(Monster theMonster)
 	{
-		
-		System.out.println("\nYou must battle " + theMonster.getName());
+		Hero theHero = Hero.getGameHero();
+		System.out.println("You must battle " + theMonster.getName());
 		System.out.println("---------------------------------------------");
 
 		//do battle
@@ -140,16 +149,23 @@ user has the option of quitting.
 			System.out.println("Need to figure out what happened");
 	}//end battle method
 	
-	private static void checkRoomObject(Maze maze,Hero theHero) {
+	private static void checkRoomObject(Maze maze) {
 		String roomObjectString = getCurrentRoom(maze).centerObject();
+		
 		RoomObject roomObject = getCurrentRoom(maze).getRoomObject();
+		
 		printMessage(roomObject,maze);
+		
 		if(roomObjectString.equals("X")) {
 			Monster theMonster = (Monster) roomObject;
-			battle(theHero, theMonster);
+			battle(theMonster);
 			System.out.println(getCurrentRoom(maze));
-		}else if(roomObjectString.equals("V")) {
-			
+		}else if(roomObjectString.equals("V") || roomObjectString.equals("H")) {
+			Potion potion = (Potion)roomObject;
+			potion.pickupPotion();
+			potion.setAlreadyPickedUp(true);
+		}else if(roomObjectString.equals("W")) {
+			Hero.getGameHero().setNumPillarsFound(Hero.getGameHero().getNumPillarsFound() + 1);
 		}
 	}
 	
@@ -164,7 +180,14 @@ user has the option of quitting.
 		else if(getCurrentRoom(maze).isExit())
 			System.out.println("the exit");
 		else
-			System.out.print("a " + roomObject.getName());
+			System.out.print("a " + roomObject.getName() + "\n");
+		printHeroCurrentStats();
+	}
+	
+	private static void printHeroCurrentStats() {
+		Hero theHero = Hero.getGameHero();
+		System.out.printf("%-15s|%-15s|%-15s%n","Healing Potions","Vision Potions","Pillars Found");
+		System.out.printf("%-15s|%-15s|%-15s%n",theHero.getNumHealingPotions(),theHero.getNumVisionPotions(),theHero.getNumPillarsFound());
 	}
 	
 	private static Room getCurrentRoom(Maze maze) {

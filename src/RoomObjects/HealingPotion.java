@@ -4,8 +4,9 @@ import java.util.Random;
 
 import DungeonGame.Hero;
 
-public class HealingPotion implements RoomObject {
+public class HealingPotion extends Potion {
 	private Hero hero = Hero.getGameHero();
+	private boolean alreadyPickedUp = false;
 	
 	public void usePotion(){
 		Random ran = new Random();
@@ -17,7 +18,18 @@ public class HealingPotion implements RoomObject {
 	}
 		
 	public void pickupPotion() {
-		hero.setNumHealingPotions(hero.getNumHealingPotions() + 1);
+		if(!this.alreadyPickedUp) {
+			hero.setNumHealingPotions(hero.getNumHealingPotions() + 1);
+			setAlreadyPickedUp(true);
+		}
+	}
+	
+	public boolean isAlreadyPickedUp() {
+		return alreadyPickedUp;
+	}
+
+	public void setAlreadyPickedUp(boolean alreadyPickedUp) {
+		this.alreadyPickedUp = alreadyPickedUp;
 	}
 
 	@Override

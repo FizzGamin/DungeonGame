@@ -1,10 +1,12 @@
 package RoomObjects;
 
+import DungeonGame.Hero;
 import Maze.*;
 
-public class VisionPotion implements RoomObject {
+public class VisionPotion extends Potion{
+	private boolean alreadyPickedUp = false;
 	
-	public static void usePotion() {
+	public void usePotion() {
 		Maze maze = MazeBuilder.getMaze();
 		int row = maze.getPlayerPositionRow();
 		int col = maze.getPlayerPositionCol();
@@ -74,6 +76,23 @@ public class VisionPotion implements RoomObject {
 		else {
 			System.out.print("You broke the game. Player position Unkown.");
 		}
+	}
+
+	@Override
+	public void pickupPotion() {
+		if(!this.alreadyPickedUp) {
+			Hero hero = Hero.getGameHero();
+			hero.setNumVisionPotions(hero.getNumVisionPotions() + 1);
+			setAlreadyPickedUp(true);
+		}
+	}
+	
+	public boolean isAlreadyPickedUp() {
+		return alreadyPickedUp;
+	}
+
+	public void setAlreadyPickedUp(boolean alreadyPickedUp) {
+		this.alreadyPickedUp = alreadyPickedUp;
 	}
 
 	@Override
