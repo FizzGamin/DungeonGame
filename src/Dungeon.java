@@ -58,7 +58,7 @@ public class Dungeon
     	Hero theHero;
 		theHero = chooseHero();
     	Maze maze = MazeBuilder.buildMaze();
-    	System.out.println(maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()]);
+    	System.out.println(getCurrentRoom(maze));
     	System.out.println("wasd to move");
     	Scanner sc = new Scanner(System.in);
     	int i = 0;
@@ -79,7 +79,7 @@ public class Dungeon
     		MazeBuilder.printEntireMaze(maze);
     	else if(move.toLowerCase().equals("f"))
     		VisionPotion.usePotion();
-    	System.out.println(maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()]);
+    	System.out.println(getCurrentRoom(maze));
     	checkRoomObject(maze,theHero);
     	}
     	
@@ -94,7 +94,7 @@ this task
 	public static Hero chooseHero()
 	{
 		int choice = 0;
-		while(choice < 1 || choice > 3)
+		while(choice < 1 || choice > 5)
 		{	
 			System.out.println("Choose a hero:\n" +
 					       "1. Warrior\n" +
@@ -110,35 +110,6 @@ this task
 	}//end chooseHero method
 
 /*-------------------------------------------------------------------
-generateMonster randomly selects a Monster and returns it.  It utilizes
-a polymorphic reference (Monster) to accomplish this task.
----------------------------------------------------------------------*/
-	public static Monster generateMonster()
-	{
-		int choice;
-
-		choice = (int)(Math.random() * 5) + 1;
-		
-		return MonsterFactory.createMonster(choice);
-	}//end generateMonster method
-
-/*-------------------------------------------------------------------
-playAgain allows gets choice from user to play another game.  It returns
-true if the user chooses to continue, false otherwise.
----------------------------------------------------------------------*/
-	public static boolean playAgain()
-	{
-		
-		char again;
-
-		System.out.println("Play again (y/n)?");
-		again = DungeonCharacter.sc.next().charAt(0);
-		
-		return (again == 'Y' || again == 'y');
-	}//end playAgain method
-
-
-/*-------------------------------------------------------------------
 battle is the actual combat portion of the game.  It requires a Hero
 and a Monster to be passed in.  Battle occurs in rounds.  The Hero
 goes first, then the Monster.  At the conclusion of each round, the
@@ -147,13 +118,11 @@ user has the option of quitting.
 	public static void battle(Hero theHero, Monster theMonster)
 	{
 		
-		char quit = 'p';
-		System.out.println(theHero.getName() + " battles " +
-							theMonster.getName());
+		System.out.println("\nYou must battle " + theMonster.getName());
 		System.out.println("---------------------------------------------");
 
 		//do battle
-		while (theHero.isAlive() && theMonster.isAlive() && quit != 'q')
+		while (theHero.isAlive() && theMonster.isAlive())
 		{
 		    //hero goes first
 			theHero.battleChoices(theMonster);
@@ -161,29 +130,45 @@ user has the option of quitting.
 			//monster's turn (provided it's still alive!)
 			if (theMonster.isAlive())
 			    theMonster.attack(theHero);
-
-			//let the player bail out if desired
-			System.out.print("\n-->q to quit, anything else to continue: ");
-			quit = DungeonCharacter.sc.next().charAt(0);
-
 		}//end battle loop
 
 		if (!theMonster.isAlive())
 		    System.out.println(theHero.getName() + " was victorious!");
 		else if (!theHero.isAlive())
-			System.out.println(theHero.getName() + " was defeated :-(");
-		else//both are alive so user quit the game
-			System.out.println("Quitters never win ;-)");
-		
+			System.out.println(theHero.getName() + " was defeated :-(");	
+		else
+			System.out.println("Need to figure out what happened");
 	}//end battle method
 	
 	private static void checkRoomObject(Maze maze,Hero theHero) {
-		String roomObject = maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()].centerObject();
-		if(roomObject.equals("X")) {
-			Monster theMonster = (Monster) maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()].getRoomObject();
+		String roomObjectString = getCurrentRoom(maze).centerObject();
+		RoomObject roomObject = getCurrentRoom(maze).getRoomObject();
+		printMessage(roomObject,maze);
+		if(roomObjectString.equals("X")) {
+			Monster theMonster = (Monster) roomObject;
 			battle(theHero, theMonster);
-		}
+			System.out.println(getCurrentRoom(maze));
+		}else if(roomObjectString.equals("V")) {
 			
+		}
+	}
+	
+	private static void printMessage(RoomObject roomObject,Maze maze) {
+		System.out.print("You have come accross ");
+		if(roomObject == null)
+			System.out.println("an Empty room");
+		else if(getCurrentRoom(maze).hasPillar())
+			System.out.println("a Pillar");
+		else if(getCurrentRoom(maze).isEntrance())
+			System.out.println("the entrance");
+		else if(getCurrentRoom(maze).isExit())
+			System.out.println("the exit");
+		else
+			System.out.print("a " + roomObject.getName());
+	}
+	
+	private static Room getCurrentRoom(Maze maze) {
+		return maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()];
 	}
 
 }//end Dungeon class

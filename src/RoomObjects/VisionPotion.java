@@ -75,4 +75,9 @@ public class VisionPotion implements RoomObject {
 			System.out.print("You broke the game. Player position Unkown.");
 		}
 	}
+
+	@Override
+	public String getName() {
+		return "Vision Potion";
+	}
 }
