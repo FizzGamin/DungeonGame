@@ -58,7 +58,7 @@ public class Dungeon
     	Hero theHero;
 		theHero = chooseHero();
     	Maze maze = MazeBuilder.buildMaze();
-    	System.out.println(maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()]);
+    	printCurrentRoom(maze);
     	System.out.println("wasd to move");
     	Scanner sc = new Scanner(System.in);
     	int i = 0;
@@ -79,7 +79,7 @@ public class Dungeon
     		MazeBuilder.printEntireMaze(maze);
     	else if(move.toLowerCase().equals("f"))
     		VisionPotion.usePotion();
-    	System.out.println(maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()]);
+    	printCurrentRoom(maze);
     	checkRoomObject(maze,theHero);
     	}
     	
@@ -118,13 +118,11 @@ user has the option of quitting.
 	public static void battle(Hero theHero, Monster theMonster)
 	{
 		
-		char quit = 'p';
-		System.out.println(theHero.getName() + " battles " +
-							theMonster.getName());
+		System.out.println("You have come accross a Monster, now you must battle " + theMonster.getName());
 		System.out.println("---------------------------------------------");
 
 		//do battle
-		while (theHero.isAlive() && theMonster.isAlive() && quit != 'q')
+		while (theHero.isAlive() && theMonster.isAlive())
 		{
 		    //hero goes first
 			theHero.battleChoices(theMonster);
@@ -132,20 +130,14 @@ user has the option of quitting.
 			//monster's turn (provided it's still alive!)
 			if (theMonster.isAlive())
 			    theMonster.attack(theHero);
-
-			//let the player bail out if desired
-			System.out.print("\n-->q to quit, anything else to continue: ");
-			quit = DungeonCharacter.sc.next().charAt(0);
-
 		}//end battle loop
 
 		if (!theMonster.isAlive())
 		    System.out.println(theHero.getName() + " was victorious!");
 		else if (!theHero.isAlive())
-			System.out.println(theHero.getName() + " was defeated :-(");
-		else//both are alive so user quit the game
-			System.out.println("Quitters never win ;-)");
-		
+			System.out.println(theHero.getName() + " was defeated :-(");	
+		else
+			System.out.println("Need to figure out what happened");
 	}//end battle method
 	
 	private static void checkRoomObject(Maze maze,Hero theHero) {
@@ -153,8 +145,12 @@ user has the option of quitting.
 		if(roomObject.equals("X")) {
 			Monster theMonster = (Monster) maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()].getRoomObject();
 			battle(theHero, theMonster);
+			printCurrentRoom(maze);
 		}
-			
+	}
+	
+	private static void printCurrentRoom(Maze maze) {
+		System.out.println(maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()]);
 	}
 
 }//end Dungeon class
