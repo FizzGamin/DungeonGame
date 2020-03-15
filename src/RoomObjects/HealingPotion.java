@@ -19,4 +19,9 @@ public class HealingPotion implements RoomObject {
 	public void pickupPotion() {
 		hero.setNumHealingPotions(hero.getNumHealingPotions() + 1);
 	}
+
+	@Override
+	public String getName() {
+		return "Healing Potion";
+	}
 }

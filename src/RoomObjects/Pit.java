@@ -14,4 +14,9 @@ public class Pit implements RoomObject{
 		hero.changeHitPoints(-damage);
 		
 	}
+
+	@Override
+	public String getName() {
+		return "Pit";
+	}
 }
