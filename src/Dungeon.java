@@ -110,35 +110,6 @@ this task
 	}//end chooseHero method
 
 /*-------------------------------------------------------------------
-generateMonster randomly selects a Monster and returns it.  It utilizes
-a polymorphic reference (Monster) to accomplish this task.
----------------------------------------------------------------------*/
-	public static Monster generateMonster()
-	{
-		int choice;
-
-		choice = (int)(Math.random() * 5) + 1;
-		
-		return MonsterFactory.createMonster(choice);
-	}//end generateMonster method
-
-/*-------------------------------------------------------------------
-playAgain allows gets choice from user to play another game.  It returns
-true if the user chooses to continue, false otherwise.
----------------------------------------------------------------------*/
-	public static boolean playAgain()
-	{
-		
-		char again;
-
-		System.out.println("Play again (y/n)?");
-		again = DungeonCharacter.sc.next().charAt(0);
-		
-		return (again == 'Y' || again == 'y');
-	}//end playAgain method
-
-
-/*-------------------------------------------------------------------
 battle is the actual combat portion of the game.  It requires a Hero
 and a Monster to be passed in.  Battle occurs in rounds.  The Hero
 goes first, then the Monster.  At the conclusion of each round, the
