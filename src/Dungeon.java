@@ -58,7 +58,7 @@ public class Dungeon
     	Hero theHero;
 		theHero = chooseHero();
     	Maze maze = MazeBuilder.buildMaze();
-    	printCurrentRoom(maze);
+    	System.out.println(getCurrentRoom(maze));
     	System.out.println("wasd to move");
     	Scanner sc = new Scanner(System.in);
     	int i = 0;
@@ -79,7 +79,7 @@ public class Dungeon
     		MazeBuilder.printEntireMaze(maze);
     	else if(move.toLowerCase().equals("f"))
     		VisionPotion.usePotion();
-    	printCurrentRoom(maze);
+    	System.out.println(getCurrentRoom(maze));
     	checkRoomObject(maze,theHero);
     	}
     	
@@ -118,7 +118,7 @@ user has the option of quitting.
 	public static void battle(Hero theHero, Monster theMonster)
 	{
 		
-		System.out.println("You have come accross a Monster, now you must battle " + theMonster.getName());
+		System.out.println("\nYou must battle " + theMonster.getName());
 		System.out.println("---------------------------------------------");
 
 		//do battle
@@ -141,16 +141,34 @@ user has the option of quitting.
 	}//end battle method
 	
 	private static void checkRoomObject(Maze maze,Hero theHero) {
-		String roomObject = maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()].centerObject();
-		if(roomObject.equals("X")) {
-			Monster theMonster = (Monster) maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()].getRoomObject();
+		String roomObjectString = getCurrentRoom(maze).centerObject();
+		RoomObject roomObject = getCurrentRoom(maze).getRoomObject();
+		printMessage(roomObject,maze);
+		if(roomObjectString.equals("X")) {
+			Monster theMonster = (Monster) roomObject;
 			battle(theHero, theMonster);
-			printCurrentRoom(maze);
+			System.out.println(getCurrentRoom(maze));
+		}else if(roomObjectString.equals("V")) {
+			
 		}
 	}
 	
-	private static void printCurrentRoom(Maze maze) {
-		System.out.println(maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()]);
+	private static void printMessage(RoomObject roomObject,Maze maze) {
+		System.out.print("You have come accross ");
+		if(roomObject == null)
+			System.out.println("an Empty room");
+		else if(getCurrentRoom(maze).hasPillar())
+			System.out.println("a Pillar");
+		else if(getCurrentRoom(maze).isEntrance())
+			System.out.println("the entrance");
+		else if(getCurrentRoom(maze).isExit())
+			System.out.println("the exit");
+		else
+			System.out.print("a " + roomObject.getName());
+	}
+	
+	private static Room getCurrentRoom(Maze maze) {
+		return maze.getRooms()[maze.getPlayerPositionRow()][maze.getPlayerPositionCol()];
 	}
 
 }//end Dungeon class
