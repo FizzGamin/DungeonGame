@@ -26,4 +26,4 @@ public class Pokemans extends Monster
 	}//end override of attack
 
 
-}//end class Dragon
+}//end class Pokemans
