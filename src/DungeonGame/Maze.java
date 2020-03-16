@@ -1,4 +1,4 @@
-package Maze;
+package DungeonGame;
 import DungeonGame.*;
 
 public class Maze {

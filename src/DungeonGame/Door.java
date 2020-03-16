@@ -1,4 +1,4 @@
-package Maze;
+package DungeonGame;
 
 public class Door {
 	private boolean closed = false;

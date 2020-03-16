@@ -1,8 +1,6 @@
-package RoomObjects;
+package DungeonGame;
 
 import java.util.Random;
-
-import DungeonGame.MonsterFactory;
 
 public class RoomObjectFactory {
 	public static RoomObject createRoomObject(int choice)

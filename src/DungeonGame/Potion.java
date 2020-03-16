@@ -1,4 +1,4 @@
-package RoomObjects;
+package DungeonGame;
 
 public abstract class Potion implements RoomObject{
 	public abstract void usePotion();

@@ -1,6 +1,4 @@
-package Maze;
-
-import RoomObjects.RoomObject;
+package DungeonGame;
 
 public class Room {
 	private Door north, south, east, west;

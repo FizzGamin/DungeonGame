@@ -1,8 +1,6 @@
-package RoomObjects;
+package DungeonGame;
 
 import java.util.Random;
-
-import DungeonGame.Hero;
 
 public class HealingPotion extends Potion {
 	private Hero hero = Hero.getGameHero();

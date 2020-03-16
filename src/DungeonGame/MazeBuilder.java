@@ -1,8 +1,6 @@
-package Maze;
+package DungeonGame;
 
 import java.util.Random;
-
-import RoomObjects.RoomObjectFactory;
 
 public class MazeBuilder {
 	private static Maze maze = new Maze();
@@ -166,7 +164,7 @@ public class MazeBuilder {
 	private static void lockRandomDoors(Room[][] roomSetup) {
 		Random ran = new Random();
 		
-		for(int i = 0; i < 15; i++) {
+		for(int i = 0; i < 10; i++) {
 			int randomColumn = ran.nextInt(5);
 			int randomRow = ran.nextInt(5);
 			
