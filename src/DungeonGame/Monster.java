@@ -1,7 +1,5 @@
 package DungeonGame;
 
-import RoomObjects.RoomObject;
-
 /**
  * Title:
  * Description:

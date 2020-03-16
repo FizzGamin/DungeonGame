@@ -1,8 +1,6 @@
 import java.util.Scanner;
 
 import DungeonGame.*;
-import Maze.*;
-import RoomObjects.*;
 
 /**
  * Title: Dungeon.java

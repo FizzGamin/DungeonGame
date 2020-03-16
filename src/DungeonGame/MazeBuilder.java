@@ -1,8 +1,6 @@
-package Maze;
+package DungeonGame;
 
 import java.util.Random;
-
-import RoomObjects.RoomObjectFactory;
 
 public class MazeBuilder {
 	private static Maze maze = new Maze();

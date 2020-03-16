@@ -1,7 +1,4 @@
-package RoomObjects;
-
-import DungeonGame.Hero;
-import Maze.*;
+package DungeonGame;
 
 public class VisionPotion extends Potion{
 	private boolean alreadyPickedUp = false;

@@ -1,8 +1,6 @@
-package RoomObjects;
+package DungeonGame;
 
 import java.util.Random;
-
-import DungeonGame.Hero;
 
 public class Pit implements RoomObject{
 	private Hero hero = Hero.getGameHero();
