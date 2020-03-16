@@ -5,63 +5,69 @@ import java.util.Random;
 import RoomObjects.RoomObjectFactory;
 
 public class MazeBuilder {
-	
-	
-	public static void main(String[] args) {
-		Maze maze = buildMaze();
-		printEntireMaze(maze);
-		
-	}
+	private static Maze maze = new Maze();
 	
 	public static void printEntireMaze(Maze maze) {
 		Room[][] rooms = maze.getRooms();
-		
-
-		int column = 0;
-		
-		for(int i = 0; i < 10; i++) {
-			for(int j = 0; j < 5; j++) {
-				if(i%2 == 0) {//Print Top
+		for(int i = 0; i < 5; i++) {
+			printRow(i,0,4,rooms);
+			if(i == 4)
+				printBottomRow(i,0,4,rooms);
+		}
+	}
+	
+	public static void printRow(int row,int columnToStartAt, int columnToEndAt, Room[][] rooms) {
+		for(int i = 0; i < 2; i++) {
+			for(int j = columnToStartAt; j < columnToEndAt+1; j++) {
+				//Print Top
+				if(i == 0) {
 					System.out.print("*");
 					
-					if(rooms[column][j].getNorth().isClosed())
+					if(rooms[row][j].getNorth().isClosed())
 						System.out.print("*");
 					else
 						System.out.print("-");
 					
-					if(j == 4)
+					if(j==columnToEndAt) 
 						System.out.print("*");
-					
-				}else {//Print Middle
-					if(j == 0) {
+				}
+				//Print Middle
+				else {
+					if(rooms[row][j].getWest().isClosed())
 						System.out.print("*");
-						System.out.print(rooms[column][j].centerObject());
-					}
+					else
+						System.out.print("|");
 					
-					else{
-						
-						if(rooms[column][j].getEast().isClosed())
+					System.out.print(rooms[row][j].centerObject());
+					if(j==columnToEndAt) {
+						if(rooms[row][j].getEast().isClosed())
 							System.out.print("*");
 						else
 							System.out.print("|");
-						System.out.print(rooms[column][j].centerObject());
-						if(j==4) {
-							System.out.print("*");
-						}
 					}
 				}
 			}
-			if(i%2 == 1)
-				column++;
 			System.out.println();
 		}
-		
-		System.out.println("***********");
-		
 	}
 	
+	public static void printBottomRow(int row,int columnToStartAt, int columnToEndAt, Room[][] rooms) {
+		for(int j = columnToStartAt; j < columnToEndAt+1; j++) {
+			System.out.print("*");
+			
+			if(rooms[row][j].getSouth().isClosed())
+				System.out.print("*");
+			else
+				System.out.print("-");
+			
+			if(j==columnToEndAt) 
+				System.out.print("*");
+		}
+		System.out.println();
+	}
+	
+	
 	public static Maze buildMaze() {
-		Maze maze = new Maze();
 		initiliazeRooms(maze);
 		return maze;
 	}
@@ -76,9 +82,9 @@ public class MazeBuilder {
 			}
 		}
 		initiliazeDoors(roomSetup);
-		setRandomRoomObjects(roomSetup);
 		setExitAndEntrance(roomSetup);
 		setupPillars(roomSetup);
+		setRandomRoomObjects(roomSetup);
 		maze.setRooms(roomSetup);
 	}
 	
@@ -89,8 +95,10 @@ public class MazeBuilder {
 		//Setup Entrance
 		int entranceColumn = ran.nextInt(5);
 		int entranceRow = ran.nextInt(5);
-		roomSetup[entranceRow][entranceColumn].setDiscovered(true);
+		
 		roomSetup[entranceRow][entranceColumn].setEntrance(true);
+		maze.setPlayerPositionRow(entranceRow);
+		maze.setPlayerPositionCol(entranceColumn);
 
 		//Setup Exit
 		int exitColumn = ran.nextInt(5);
@@ -98,10 +106,8 @@ public class MazeBuilder {
 		if(roomSetup[exitRow][exitColumn].isEntrance()) {
 			exitColumn = ran.nextInt(5);
 			exitRow = ran.nextInt(5);
-			roomSetup[exitRow][exitColumn].setDiscovered(true);
 			roomSetup[exitRow][exitColumn].setExit(true);
 		}else {
-			roomSetup[exitRow][exitColumn].setDiscovered(true);
 			roomSetup[exitRow][exitColumn].setExit(true);
 		}
 		
@@ -128,7 +134,7 @@ public class MazeBuilder {
 		
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
-				int num = ran.nextInt(4) + 1;
+				int num = ran.nextInt(100);
 				roomSetup[i][j].setRoomObject(RoomObjectFactory.createRoomObject(num));
 			}
 		}
@@ -140,10 +146,19 @@ public class MazeBuilder {
 		lockAllBorderDoors(roomSetup);
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
+				//Check south close north
 				if(roomSetup[i][j].getSouth().isClosed() && i < 4)
 					roomSetup[i+1][j].getNorth().close();
+				//Check east close west
 				if(roomSetup[i][j].getEast().isClosed() && j < 4)
 					roomSetup[i][j+1].getWest().close();
+				//Check north close south
+				if(roomSetup[i][j].getNorth().isClosed() && i > 0)
+					roomSetup[i-1][j].getSouth().close();
+				//Check west close east
+				if(roomSetup[i][j].getWest().isClosed() && j > 0)
+					roomSetup[i][j-1].getEast().close();
+				
 			}
 		}
 	}
@@ -151,7 +166,7 @@ public class MazeBuilder {
 	private static void lockRandomDoors(Room[][] roomSetup) {
 		Random ran = new Random();
 		
-		for(int i = 0; i < 10; i++) {
+		for(int i = 0; i < 15; i++) {
 			int randomColumn = ran.nextInt(5);
 			int randomRow = ran.nextInt(5);
 			
@@ -170,9 +185,13 @@ public class MazeBuilder {
 		for(int i = 0; i < 5; i++) {
 			roomSetup[0][i].getNorth().close();//Top rooms
 			roomSetup[4][i].getSouth().close();//Bottom rooms
-			roomSetup[i][0].getEast().close();//LeftSide rooms
-			roomSetup[i][4].getWest().close();//RightSide rooms
+			roomSetup[i][0].getWest().close();//LeftSide rooms
+			roomSetup[i][4].getEast().close();//RightSide rooms
 		}
+	}
+	
+	public static Maze getMaze() {
+		return maze;
 	}
 	
 }

@@ -4,25 +4,21 @@ import RoomObjects.RoomObject;
 
 public class Room {
 	private Door north, south, east, west;
-	private boolean exit, entrance, isDiscovered, hasPillar = false;
+	private boolean exit, entrance, hasPillar = false;
 	private RoomObject roomObject;
 		
 public void initializeRoom() {
 		//North
-		Door northDoor = new Door();
-		this.setNorth(northDoor);
+		this.setNorth(new Door());
 		
 		//South
-		Door southDoor = new Door();
-		this.setSouth(southDoor);
+		this.setSouth(new Door());
 		
 		//East
-		Door eastDoor = new Door();
-		this.setEast(eastDoor);
+		this.setEast(new Door());
 		
 		//West
-		Door westDoor = new Door();
-		this.setWest(westDoor);
+		this.setWest(new Door());
 	}
 	
 	public Door getNorth() {
@@ -62,7 +58,8 @@ public void initializeRoom() {
 	}
 	
 	public void setRoomObject(RoomObject roomObject) {
-		this.roomObject = roomObject;
+		if(this.roomObject == null)
+			this.roomObject = roomObject;
 	}
 	
 	public boolean isExit() {
@@ -84,16 +81,6 @@ public void initializeRoom() {
 		this.entrance = entrance;
 	}
 
-
-	public boolean isDiscovered() {
-		return isDiscovered;
-	}
-
-
-	public void setDiscovered(boolean isDiscovered) {
-		this.isDiscovered = isDiscovered;
-	}
-
 	public boolean hasPillar() {
 		return hasPillar;
 	}
@@ -103,56 +90,52 @@ public void initializeRoom() {
 	}
 
 	public String centerObject() {
-		if(!this.isDiscovered)
-			return "?";
-		else {
-			if(this.roomObject == null) 
-				return "E";
-			else if(this.entrance)
-				return "I";
-			else if(this.exit)
-				return "O";
-			else if(this.hasPillar) 
-				return "W";//W for Win
-			else if(this.roomObject.getClass().getSuperclass().getSimpleName().equals("Monster")) 
-				return "X";
-			else if(this.roomObject.getClass().getSimpleName().equals("VisionPotion"))
-				return "V";
-			else if(this.roomObject.getClass().getSimpleName().equals("Pit"))
-				return "P";
-			else if(this.roomObject.getClass().getSimpleName().equals("HealingPotion"))
-				return "H";
-			else
-				return "M";
-		}
+		if(this.roomObject == null) 
+			return "E";
+		else if(this.entrance)
+			return "I";
+		else if(this.exit)
+			return "O";
+		else if(this.hasPillar) 
+			return "W";//W for Win
+		else if(this.roomObject.getClass().getSuperclass().getSimpleName().equals("Monster")) 
+			return "X";
+		else if(this.roomObject.getClass().getSimpleName().equals("VisionPotion"))
+			return "V";
+		else if(this.roomObject.getClass().getSimpleName().equals("Pit"))
+			return "P";
+		else if(this.roomObject.getClass().getSimpleName().equals("HealingPotion"))
+			return "H";
+		else
+			return "M";
 	}
 
 	public String toString() {
 		String roomToString;
 
 		//North
-		if(north.isClosed())
+		if(this.north.isClosed())
 			roomToString = "***\n";
 		else
 			roomToString = "*-*\n";
 
-		//East
-		if(east.isClosed())
+		//West
+		if(this.west.isClosed())
 			roomToString += "*";
 		else
 			roomToString +="|";
-
+		
 		//Middle
 		roomToString += centerObject();
 
-		//West
-		if(west.isClosed())
+		//East
+		if(this.east.isClosed())
 			roomToString += "*\n";
 		else
 			roomToString +="|\n";
 
 		//South
-		if(south.isClosed())
+		if(this.south.isClosed())
 			roomToString += "***\n";
 		else
 			roomToString += "*-*\n";

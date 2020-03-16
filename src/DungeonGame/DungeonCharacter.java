@@ -76,6 +76,10 @@ public abstract class DungeonCharacter implements Comparable<DungeonCharacter>
 	{
 		return hitPoints;
 	}//end getHitPoints
+	public void setHitPoints(int newHealth)
+	{
+		hitPoints = newHealth;
+	}
 //-----------------------------------------------------------------
 	public int getAttackSpeed()
 	{

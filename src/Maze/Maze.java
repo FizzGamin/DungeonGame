@@ -21,32 +21,52 @@ public class Maze {
 		this.rooms = rooms;
 	}
 	
+	public int getPlayerPositionRow() {
+		return playerPositionRow;
+	}
+
+	public void setPlayerPositionRow(int playerPositionRow) {
+		this.playerPositionRow = playerPositionRow;
+	}
+
+	public int getPlayerPositionCol() {
+		return playerPositionCol;
+	}
+
+	public void setPlayerPositionCol(int playerPositionCol) {
+		this.playerPositionCol = playerPositionCol;
+	}
+
 	public void moveNorth() {
-		if(this.playerPositionRow == 0 || this.rooms[playerPositionRow][playerPositionCol].getNorth().isClosed())
-			System.out.println("Border reached or Door Locked");
-		else
+		if(this.rooms[playerPositionRow][playerPositionCol].getNorth().isClosed())
+			System.out.println("Door Locked");
+		else {
 			this.playerPositionRow--;
+		}
 	}
 	
 	public void moveSouth() {
-		if(this.playerPositionRow == 4 || this.rooms[playerPositionRow][playerPositionCol].getSouth().isClosed())
-			System.out.println("Border reached or Door Locked");
-		else
+		if(this.rooms[playerPositionRow][playerPositionCol].getSouth().isClosed())
+			System.out.println("Door Locked");
+		else {
 			this.playerPositionRow++;
+		}
 	}
 	
 	public void moveEast() {
-		if(this.playerPositionCol == 0 || this.rooms[playerPositionRow][playerPositionCol].getEast().isClosed())
-			System.out.println("Border reached or Door Locked");
-		else
-			this.playerPositionCol--;
+		if(this.rooms[playerPositionRow][playerPositionCol].getEast().isClosed())
+			System.out.println("Door Locked");
+		else {
+			this.playerPositionCol++;
+		}
 	}
 	
 	public void moveWest() {
-		if(this.playerPositionRow == 4 || this.rooms[playerPositionRow][playerPositionCol].getWest().isClosed())
-			System.out.println("Border reached or Door Locked");
-		else
-			this.playerPositionCol++;
+		if(this.rooms[playerPositionRow][playerPositionCol].getWest().isClosed())
+			System.out.println("Door Locked");
+		else {
+			this.playerPositionCol--;
+		}
 	}
 	
 }
