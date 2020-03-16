@@ -89,7 +89,7 @@ public class Dungeon
     	}
     	
     	System.out.println("You have Completed the maze");
-    	
+    	MazeBuilder.printEntireMaze(maze);
     	sc.close();
     }//end main method
 
@@ -164,6 +164,9 @@ user has the option of quitting.
 			potion.setAlreadyPickedUp(true);
 		}else if(roomObjectString.equals("W")) {
 			Hero.getGameHero().setNumPillarsFound(Hero.getGameHero().getNumPillarsFound() + 1);
+		}else if(roomObjectString.equals("P")) {
+			Pit pit = (Pit) roomObject;
+			pit.fallInPit();
 		}
 	}
 	

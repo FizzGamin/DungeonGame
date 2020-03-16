@@ -10,7 +10,6 @@ public class Pit implements RoomObject{
 		
 		int damage = ran.nextInt(20)+1;
 		hero.changeHitPoints(-damage);
-		
 	}
 
 	@Override
