@@ -7,6 +7,7 @@ public class VisionPotion extends Potion{
 		Maze maze = MazeBuilder.getMaze();
 		int row = maze.getPlayerPositionRow();
 		int col = maze.getPlayerPositionCol();
+		Hero.getGameHero().setNumVisionPotions(Hero.getGameHero().getNumVisionPotions() - 1);
 		//If not near the border
 		if(row > 0 && col > 0 && row < 4 && col < 4) {
 			for(int i = row-1; i < row+2; i++) {

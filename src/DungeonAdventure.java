@@ -82,14 +82,14 @@ public class DungeonAdventure
 
     	Scanner sc = new Scanner(System.in);
     	
-    	while(theHero.getNumPillarsFound() < 4 && !getCurrentRoom(maze).isExit()) {
+    	while(theHero.getNumPillarsFound() < 4 && !getCurrentRoom(maze).isExit() && theHero.getHitPoints() > 0) {
     		System.out.println("");
     		System.out.println("");
     		System.out.println("");
     		System.out.println("");
     		System.out.println(getCurrentRoom(maze));
     		printHeroCurrentStats();
-    		System.out.println("Move(WASD), Use Potion(F)");
+    		System.out.println("Move(WASD), Use Potion(F,G)");
     		System.out.print("Enter choice:");
 	    	String move = sc.next(); 
 	    	System.out.println("::::::::::::::::::::::::::::::::::::::::::::");
@@ -116,14 +116,18 @@ public class DungeonAdventure
 	    		if(Hero.getGameHero().getNumHealingPotions() > 0)
 	    			hpotion.usePotion();
 	    		else
-	    			System.out.println("You do not have any Vision Potions");
+	    			System.out.println("You do not have any Healing Potions");
 	    	}
 	    	System.out.println(getCurrentRoom(maze));
-	    	checkRoomObject(maze);
-	    	
+	    	if(!getCurrentRoom(maze).isDiscovered()) {
+	    		checkRoomObject(maze);
+	    		getCurrentRoom(maze).setDiscovered(true);
+	    	}
     	}
-    	
-    	System.out.println("You have Completed the maze");
+    	if(theHero.getHitPoints() > 0)
+    		System.out.println("You have Completed the maze");
+    	else
+    		System.out.println("You Lose");
     	MazeBuilder.printEntireMaze(maze);
     	sc.close();
     }//end main method
