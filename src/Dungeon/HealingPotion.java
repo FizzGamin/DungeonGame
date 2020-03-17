@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class HealingPotion extends Potion {
 	private Hero hero = Hero.getGameHero();
-	private boolean alreadyPickedUp = false;
+
 	
 	public void usePotion(){
 		Random ran = new Random();
@@ -16,19 +16,9 @@ public class HealingPotion extends Potion {
 	}
 		
 	public void pickupPotion() {
-		if(!this.alreadyPickedUp) {
-			hero.setNumHealingPotions(hero.getNumHealingPotions() + 1);
-			setAlreadyPickedUp(true);
-		}
+		hero.setNumHealingPotions(hero.getNumHealingPotions() + 1);
 	}
 	
-	public boolean isAlreadyPickedUp() {
-		return alreadyPickedUp;
-	}
-
-	public void setAlreadyPickedUp(boolean alreadyPickedUp) {
-		this.alreadyPickedUp = alreadyPickedUp;
-	}
 
 	@Override
 	public String getName() {
