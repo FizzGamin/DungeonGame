@@ -102,8 +102,10 @@ public class MazeBuilder {
 		int exitColumn = ran.nextInt(5);
 		int exitRow = ran.nextInt(5);
 		if(roomSetup[exitRow][exitColumn].isEntrance()) {
-			exitColumn = ran.nextInt(5);
-			exitRow = ran.nextInt(5);
+			while(roomSetup[exitRow][exitColumn].isEntrance()) {
+				exitColumn = ran.nextInt(5);
+				exitRow = ran.nextInt(5);
+			}
 			roomSetup[exitRow][exitColumn].setExit(true);
 		}else {
 			roomSetup[exitRow][exitColumn].setExit(true);

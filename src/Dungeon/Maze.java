@@ -1,16 +1,12 @@
 package Dungeon;
-import Dungeon.*;
 
 public class Maze {
 	private Room [][] rooms;
 	private int playerPositionRow, playerPositionCol;
-	private Hero gameHero = null;
-	
 	public Maze() {
 		this.playerPositionRow = 0;
 		this.playerPositionCol = 0;
-		//when creating maze, we will get reference to the current hero
-		gameHero = Hero.getGameHero();
+		Hero.getGameHero();
 	}
 	
 	public Room[][] getRooms(){

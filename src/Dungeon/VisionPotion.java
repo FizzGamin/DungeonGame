@@ -1,12 +1,12 @@
 package Dungeon;
 
 public class VisionPotion extends Potion{
-	private boolean alreadyPickedUp = false;
 	
 	public void usePotion() {
 		Maze maze = MazeBuilder.getMaze();
 		int row = maze.getPlayerPositionRow();
 		int col = maze.getPlayerPositionCol();
+		Hero.getGameHero().setNumVisionPotions(Hero.getGameHero().getNumVisionPotions() - 1);
 		//If not near the border
 		if(row > 0 && col > 0 && row < 4 && col < 4) {
 			for(int i = row-1; i < row+2; i++) {
@@ -77,21 +77,10 @@ public class VisionPotion extends Potion{
 
 	@Override
 	public void pickupPotion() {
-		if(!this.alreadyPickedUp) {
-			Hero hero = Hero.getGameHero();
-			hero.setNumVisionPotions(hero.getNumVisionPotions() + 1);
-			setAlreadyPickedUp(true);
-		}
+		Hero hero = Hero.getGameHero();
+		hero.setNumVisionPotions(hero.getNumVisionPotions() + 1);
 	}
 	
-	public boolean isAlreadyPickedUp() {
-		return alreadyPickedUp;
-	}
-
-	public void setAlreadyPickedUp(boolean alreadyPickedUp) {
-		this.alreadyPickedUp = alreadyPickedUp;
-	}
-
 	@Override
 	public String getName() {
 		return "Vision Potion";
