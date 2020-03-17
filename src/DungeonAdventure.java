@@ -82,8 +82,15 @@ public class DungeonAdventure
     	Scanner sc = new Scanner(System.in);
     	
     	while(theHero.getNumPillarsFound() < 4 && !getCurrentRoom(maze).isExit()) {
-    		System.out.print("Enter choice (W, A, S, D, F):");
-	    	String move = sc.next();
+    		System.out.println("");
+    		System.out.println("");
+    		System.out.println("");
+    		System.out.println("");
+    		System.out.println(getCurrentRoom(maze));
+    		printHeroCurrentStats();
+    		System.out.println("Move(WASD), Use Potion(F)");
+    		System.out.print("Enter choice:");
+	    	String move = sc.next(); 
 	    	System.out.println("::::::::::::::::::::::::::::::::::::::::::::");
 	    	
 	    	if(move.toLowerCase().equals("w")) 
@@ -98,7 +105,7 @@ public class DungeonAdventure
 	    		MazeBuilder.printEntireMaze(maze);
 	    	else if(move.toLowerCase().equals("f"))
 	    		potionForTesting.usePotion();
-	    	System.out.println(getCurrentRoom(maze));
+	    	
 	    	checkRoomObject(maze);
 	    	
     	}
@@ -185,7 +192,7 @@ user has the option of quitting.
 			Pit pit = (Pit) roomObject;
 			pit.fallInPit();
 		}
-		printHeroCurrentStats();
+
 	}
 	
 	private static void printMessage(RoomObject roomObject,Maze maze) {
