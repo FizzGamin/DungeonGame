@@ -70,26 +70,20 @@ public class DungeonAdventure
 		
     	theHero = chooseHero();
     	
-    	printHeroCurrentStats();
-    	
     	Maze maze = MazeBuilder.buildMaze();
     	
-    	HealingPotion hpotion = new HealingPotion();
-    	
+    	HealingPotion hpotion = new HealingPotion();   	
     	VisionPotion vpotion = new VisionPotion();
     	
-    	System.out.println(getCurrentRoom(maze));
 
     	Scanner sc = new Scanner(System.in);
     	
     	while(theHero.getNumPillarsFound() < 4 && !getCurrentRoom(maze).isExit()) {
     		System.out.println("");
     		System.out.println("");
-    		System.out.println("");
-    		System.out.println("");
     		System.out.println(getCurrentRoom(maze));
     		printHeroCurrentStats();
-    		System.out.println("Move(WASD), Use Potion(F)");
+    		System.out.println("Move(WASD), Use Potion(F) ");
     		System.out.print("Enter choice:");
 	    	String move = sc.next(); 
 	    	System.out.println("::::::::::::::::::::::::::::::::::::::::::::");
