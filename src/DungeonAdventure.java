@@ -72,13 +72,14 @@ public class DungeonAdventure
     	
     	printHeroCurrentStats();
     	
-    	VisionPotion potionForTesting = new VisionPotion();
-	
     	Maze maze = MazeBuilder.buildMaze();
+    	
+    	HealingPotion hpotion = new HealingPotion();
+    	
+    	VisionPotion vpotion = new VisionPotion();
     	
     	System.out.println(getCurrentRoom(maze));
 
-    	
     	Scanner sc = new Scanner(System.in);
     	
     	while(theHero.getNumPillarsFound() < 4 && !getCurrentRoom(maze).isExit()) {
@@ -96,8 +97,20 @@ public class DungeonAdventure
 	    		maze.moveEast();
 	    	else if(move.toLowerCase().equals("p")) //here is the secret button that pritns the whole map
 	    		MazeBuilder.printEntireMaze(maze);
-	    	else if(move.toLowerCase().equals("f"))
-	    		potionForTesting.usePotion();
+	    	//Use vision Potion
+	    	else if(move.toLowerCase().equals("f")) {
+	    		if(Hero.getGameHero().getNumVisionPotions() > 0)
+	    			vpotion.usePotion();
+	    		else
+	    			System.out.println("You do not have any Vision Potions");
+	    	}
+	    	//Use Healing Potion
+	    	else if(move.toLowerCase().equals("g")) {
+	    		if(Hero.getGameHero().getNumHealingPotions() > 0)
+	    			hpotion.usePotion();
+	    		else
+	    			System.out.println("You do not have any Vision Potions");
+	    	}
 	    	System.out.println(getCurrentRoom(maze));
 	    	checkRoomObject(maze);
 	    	
