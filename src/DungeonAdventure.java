@@ -202,7 +202,6 @@ user has the option of quitting.
 		}else if(roomObjectString.equals("V") || roomObjectString.equals("H")) {
 			Potion potion = (Potion)roomObject;
 			potion.pickupPotion();
-			potion.setAlreadyPickedUp(true);
 		}else if(roomObjectString.equals("W")) {
 			Hero.getGameHero().setNumPillarsFound(Hero.getGameHero().getNumPillarsFound() + 1);
 		}else if(roomObjectString.equals("P")) {
