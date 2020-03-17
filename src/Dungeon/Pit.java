@@ -9,7 +9,7 @@ public class Pit implements RoomObject{
 		Random ran = new Random();
 		
 		int damage = ran.nextInt(20)+1;
-		hero.changeHitPoints(-damage);
+		hero.heroFallsIntoPit(-damage);
 	}
 
 	@Override

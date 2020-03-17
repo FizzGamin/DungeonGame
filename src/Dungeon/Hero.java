@@ -72,6 +72,10 @@ public void changeHitPoints(int hitPoints)
 
 	}//end method
 
+public void heroFallsIntoPit(int damage) {
+	super.changeHitPoints(damage);
+}
+
 /*-------------------------------------------------------
 battleChoices will be overridden in derived classes.  It computes the
 number of turns a hero will get per round based on the opponent that is
