@@ -53,42 +53,81 @@ public class DungeonAdventure
 	
     public static void main(String[] args)
 	{
+    	//intro
+    	System.out.println("  ___ ___       ");
+    	System.out.println(" /   |   \\   ___________  ____  ______    ");
+    	System.out.println("/    ~    \\_/ __ \\_  __ \\/  _ \\/  ___/  ");
+    	System.out.println("\\    Y    /\\  ___/|  | \\(  <_> )___ \\     and monsters tm.");
+    	System.out.println(" \\___|_  /  \\___  >__|   \\____/____  >  ");
+    	System.out.println("");
+    	System.out.println("We hope you enjoy your stay and find all four pillars of OO");
+    	System.out.println("Controls: WASD to move, or F to use a potion");
+    	System.out.println("Rooms[E-Empty,X-Monster,P-Pit,V/H-Potion,W-Pillar]");
+    	System.out.println("Good luck!");
+    	System.out.println("");
+    	
     	Hero theHero;
 		
     	theHero = chooseHero();
     	
     	printHeroCurrentStats();
     	
-    	VisionPotion potionForTesting = new VisionPotion();
-	
     	Maze maze = MazeBuilder.buildMaze();
     	
-    	System.out.println(getCurrentRoom(maze));
-    	System.out.println("wasd to move");
+    	HealingPotion hpotion = new HealingPotion();
     	
+    	VisionPotion vpotion = new VisionPotion();
+    	
+    	System.out.println(getCurrentRoom(maze));
+
     	Scanner sc = new Scanner(System.in);
     	
-    	while(theHero.getNumPillarsFound() < 4 && !getCurrentRoom(maze).isExit()) {
-    	String move = sc.next();
-    	
-    	if(move.toLowerCase().equals("w")) {
-    		maze.moveNorth();
+    	while(theHero.getNumPillarsFound() < 4 && !getCurrentRoom(maze).isExit() && theHero.getHitPoints() > 0) {
+    		System.out.println("");
+    		System.out.println("");
+    		System.out.println("");
+    		System.out.println("");
+    		System.out.println(getCurrentRoom(maze));
+    		printHeroCurrentStats();
+    		System.out.println("Move(WASD), Use Potion(F,G)");
+    		System.out.print("Enter choice:");
+	    	String move = sc.next(); 
+	    	System.out.println("::::::::::::::::::::::::::::::::::::::::::::");
+	    	
+	    	if(move.toLowerCase().equals("w")) 
+	    		maze.moveNorth();
+	    	else if(move.toLowerCase().equals("a"))
+	    		maze.moveWest();
+	    	else if(move.toLowerCase().equals("s"))
+	    		maze.moveSouth();
+	    	else if(move.toLowerCase().equals("d"))
+	    		maze.moveEast();
+	    	else if(move.toLowerCase().equals("p")) //here is the secret button that pritns the whole map
+	    		MazeBuilder.printEntireMaze(maze);
+	    	//Use vision Potion
+	    	else if(move.toLowerCase().equals("f")) {
+	    		if(Hero.getGameHero().getNumVisionPotions() > 0)
+	    			vpotion.usePotion();
+	    		else
+	    			System.out.println("You do not have any Vision Potions");
+	    	}
+	    	//Use Healing Potion
+	    	else if(move.toLowerCase().equals("g")) {
+	    		if(Hero.getGameHero().getNumHealingPotions() > 0)
+	    			hpotion.usePotion();
+	    		else
+	    			System.out.println("You do not have any Healing Potions");
+	    	}
+	    	System.out.println(getCurrentRoom(maze));
+	    	if(!getCurrentRoom(maze).isDiscovered()) {
+	    		checkRoomObject(maze);
+	    		getCurrentRoom(maze).setDiscovered(true);
+	    	}
     	}
-    	else if(move.toLowerCase().equals("a"))
-    		maze.moveWest();
-    	else if(move.toLowerCase().equals("s"))
-    		maze.moveSouth();
-    	else if(move.toLowerCase().equals("d"))
-    		maze.moveEast();
-    	else if(move.toLowerCase().equals("p"))
-    		MazeBuilder.printEntireMaze(maze);
-    	else if(move.toLowerCase().equals("f"))
-    		potionForTesting.usePotion();
-    	System.out.println(getCurrentRoom(maze));
-    	checkRoomObject(maze);
-    	}
-    	
-    	System.out.println("You have Completed the maze");
+    	if(theHero.getHitPoints() > 0)
+    		System.out.println("You have Completed the maze");
+    	else
+    		System.out.println("You Lose");
     	MazeBuilder.printEntireMaze(maze);
     	sc.close();
     }//end main method
@@ -125,6 +164,7 @@ user has the option of quitting.
 	public static void battle(Monster theMonster)
 	{
 		Hero theHero = Hero.getGameHero();
+		System.out.println("---BATTLE---");
 		System.out.println("You must battle " + theMonster.getName());
 		System.out.println("---------------------------------------------");
 
@@ -158,6 +198,7 @@ user has the option of quitting.
 			Monster theMonster = (Monster) roomObject;
 			battle(theMonster);
 			System.out.println(getCurrentRoom(maze));
+			
 		}else if(roomObjectString.equals("V") || roomObjectString.equals("H")) {
 			Potion potion = (Potion)roomObject;
 			potion.pickupPotion();
@@ -168,6 +209,7 @@ user has the option of quitting.
 			Pit pit = (Pit) roomObject;
 			pit.fallInPit();
 		}
+
 	}
 	
 	private static void printMessage(RoomObject roomObject,Maze maze) {
@@ -182,7 +224,7 @@ user has the option of quitting.
 			System.out.println("the exit");
 		else
 			System.out.print("a " + roomObject.getName() + "\n");
-		printHeroCurrentStats();
+		
 	}
 	
 	private static void printHeroCurrentStats() {

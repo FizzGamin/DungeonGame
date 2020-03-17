@@ -2,7 +2,7 @@ package Dungeon;
 
 public class Room {
 	private Door north, south, east, west;
-	private boolean exit, entrance, hasPillar = false;
+	private boolean exit = false, entrance = false,isDiscovered = false, hasPillar = false;
 	private RoomObject roomObject;
 		
 public void initializeRoom() {
@@ -56,7 +56,7 @@ public void initializeRoom() {
 	}
 	
 	public void setRoomObject(RoomObject roomObject) {
-		if(this.roomObject == null)
+		if(this.roomObject == null && !this.entrance && !this.exit && !this.hasPillar)
 			this.roomObject = roomObject;
 	}
 	
@@ -87,15 +87,24 @@ public void initializeRoom() {
 		this.hasPillar = hasPillar;
 	}
 
+	public boolean isDiscovered() {
+		return isDiscovered;
+	}
+
+	public void setDiscovered(boolean isDiscovered) {
+		if(!this.exit)
+			this.isDiscovered = isDiscovered;
+	}
+
 	public String centerObject() {
-		if(this.roomObject == null) 
-			return "E";
-		else if(this.entrance)
+		if(this.entrance)
 			return "I";
 		else if(this.exit)
 			return "O";
 		else if(this.hasPillar) 
 			return "W";//W for Win
+		else if(this.roomObject == null) 
+			return "E";
 		else if(this.roomObject.getClass().getSuperclass().getSimpleName().equals("Monster")) 
 			return "X";
 		else if(this.roomObject.getClass().getSimpleName().equals("VisionPotion"))
